@@ -1,17 +1,34 @@
 package eni.baptistedixneuf.fr.lokacarproject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class LoginActivity extends Activity {
 
+
+    private Button bouttonLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        bouttonLogin = (Button) findViewById(R.id.activity_login_button);
+        bouttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent detailIntent = new Intent(LoginActivity.this, ContractActivity.class);
+                startActivity(detailIntent);
+            }
+        });
+
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
