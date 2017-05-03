@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.sql.SQLException;
 
 import eni.baptistedixneuf.fr.lokacarproject.bo.Categorie;
+import eni.baptistedixneuf.fr.lokacarproject.bo.Client;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
 
 /**
@@ -89,5 +90,37 @@ public class BDD {
         args.put("categorie", voiture.getCategorie().getId());
 
         update("voitures", voiture.getId(), args);
+    }
+
+
+    public Cursor getClients(){
+        return base.rawQuery("SELECT _id, nom, prenom, adresse, telephone, email " +
+                "FROM clients", null);
+    }
+
+    public Cursor getClient(int id){
+        return base.rawQuery("SELECT _id, nom, prenom, adresse, telephone, email " +
+                "FROM clients where _id = " + id, null);
+    }
+
+    public void addClient(Client client){
+        base.execSQL("INSERT INTO clients (nom, prenom, adresse, telephone, email) VALUES " +
+                "('" + client.getNom() + "','" + client.getPrenom() + "','" + client.getAdresse()
+                + "','" + client.getTel() + "','" + client.getEmail() + "')");
+    }
+
+    public void removeClient(int id){
+        remove("clients", id);
+    }
+
+    public void updateClient(Client client){
+        ContentValues args = new ContentValues();
+        args.put("nom", client.getNom());
+        args.put("prenom", client.getPrenom());
+        args.put("adresse", client.getAdresse());
+        args.put("telephone", client.getTel());
+        args.put("email", client.getEmail());
+
+        update("clients", client.getId(), args);
     }
 }
