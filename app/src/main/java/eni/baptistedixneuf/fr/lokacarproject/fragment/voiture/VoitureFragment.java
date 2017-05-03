@@ -27,16 +27,6 @@ import eni.baptistedixneuf.fr.lokacarproject.fragment.contrat.DetailContratFragm
  */
 public class VoitureFragment extends Fragment {
 
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private ListView listeVoiture;
     private Button buttonAjoutVoiture;
 
@@ -54,8 +44,6 @@ public class VoitureFragment extends Fragment {
     public static VoitureFragment newInstance(String param1, String param2) {
         VoitureFragment fragment = new VoitureFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -68,8 +56,6 @@ public class VoitureFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -90,6 +76,9 @@ public class VoitureFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 DetailVoitureFragment fragment = new DetailVoitureFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(DetailVoitureFragment.ARG_PARAM1, VoitureContent.ITEMS.get(position));
+                fragment.setArguments(bundle);
                 getFragmentManager().beginTransaction()
                         .addToBackStack(null)
                         .replace(R.id.container, fragment)

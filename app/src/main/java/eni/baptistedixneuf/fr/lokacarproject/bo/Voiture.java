@@ -1,12 +1,14 @@
 package eni.baptistedixneuf.fr.lokacarproject.bo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by mmarin2015 on 03/05/2017.
  */
-public class Voiture {
+public class Voiture implements Serializable{
+
     private int id;
     private String marque;
     private String modele;
