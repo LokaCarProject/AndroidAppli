@@ -1,17 +1,22 @@
 package eni.baptistedixneuf.fr.lokacarproject.fragment;
 
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
 import eni.baptistedixneuf.fr.lokacarproject.adaptater.voiture.VoitureAdaptater;
 import eni.baptistedixneuf.fr.lokacarproject.adaptater.voiture.VoitureContent;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
+import eni.baptistedixneuf.fr.lokacarproject.dao.VoitureDao;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +39,7 @@ public class VoitureFragment extends Fragment {
     private String mParam2;
 
     private ListView listeVoiture;
+    private Button buttonAjoutVoiture;
 
     private OnFragmentInteractionListener mListener;
 
@@ -73,19 +79,30 @@ public class VoitureFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_voiture, container, false);
 
-        //Remplacer par un appel en base
-        Voiture voiture = new Voiture();
-        voiture.setImmatriculation("AB 4782 44");
-        voiture.setModele("Audi A3");
-        VoitureContent.addItem(voiture);
+        VoitureDao voitureDao = new VoitureDao(getActivity());
+        VoitureContent.ITEMS = voitureDao.getAll();
 
         listeVoiture = (ListView) view.findViewById(R.id.fragement_voiture_listView);
         VoitureAdaptater adapter = new VoitureAdaptater(getActivity(), VoitureContent.ITEMS);
         listeVoiture.setAdapter(adapter);
+
+        buttonAjoutVoiture = (Button) view.findViewById(R.id.fragement_voiture_button);
+        buttonAjoutVoiture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.container, new AjoutVoitureFragment(), "NewFragmentTag");
+                ft.commit();
+            }
+        });
         
         // Inflate the layout for this fragment
         return view;
     }
+
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
