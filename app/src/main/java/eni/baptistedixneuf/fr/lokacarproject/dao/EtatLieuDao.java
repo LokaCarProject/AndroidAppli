@@ -25,7 +25,7 @@ public class EtatLieuDao extends Dao<EtatLieu>{
         List<EtatLieu> etatLieux = new ArrayList<>();
         try {
             bdd.open(context);
-            Cursor cursor = bdd.getCategories();
+            Cursor cursor = bdd.getEtatsLieux();
 
             while(cursor.moveToNext()){
                 EtatLieu etatLieu = new EtatLieu();
@@ -51,7 +51,7 @@ public class EtatLieuDao extends Dao<EtatLieu>{
         EtatLieu etatLieu = new EtatLieu();
         try {
             bdd.open(context);
-            Cursor cursor = bdd.getCategorie(id);
+            Cursor cursor = bdd.getEtatLieu(id);
 
             while(cursor.moveToNext()){
                 etatLieu.setId(cursor.getInt(cursor.getColumnIndex("_id")));
