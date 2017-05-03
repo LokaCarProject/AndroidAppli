@@ -104,6 +104,7 @@ public class ContractFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.addToBackStack(null);
                 ft.replace(R.id.container, new AjoutContratFragment(), "NewFragmentTag");
                 ft.commit();
             }

@@ -113,6 +113,17 @@ public class MenuActivity extends Activity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed(){
+        FragmentManager fm = getFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
     /**
      * A placeholder fragment containing a simple view.
      */

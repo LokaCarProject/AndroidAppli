@@ -91,6 +91,7 @@ public class VoitureFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.addToBackStack(null);
                 ft.replace(R.id.container, new AjoutVoitureFragment(), "NewFragmentTag");
                 ft.commit();
             }
