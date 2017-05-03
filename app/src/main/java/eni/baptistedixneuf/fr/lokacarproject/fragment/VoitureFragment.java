@@ -7,8 +7,12 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
+import eni.baptistedixneuf.fr.lokacarproject.adaptater.VoitureAdaptater;
+import eni.baptistedixneuf.fr.lokacarproject.adaptater.VoitureContent;
+import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +23,8 @@ import eni.baptistedixneuf.fr.lokacarproject.R;
  * create an instance of this fragment.
  */
 public class VoitureFragment extends Fragment {
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,6 +33,8 @@ public class VoitureFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ListView listeVoiture;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,8 +72,18 @@ public class VoitureFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view= inflater.inflate(R.layout.fragment_voiture, container, false);
+
+        Voiture voiture = new Voiture();
+        voiture.setImmatriculation("test");
+        VoitureContent.addItem(voiture);
+
+        listeVoiture = (ListView) view.findViewById(R.id.fragement_voiture_listView);
+        VoitureAdaptater adapter = new VoitureAdaptater(getActivity(), VoitureContent.ITEMS);
+        listeVoiture.setAdapter(adapter);
+        
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_voiture, container, false);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
