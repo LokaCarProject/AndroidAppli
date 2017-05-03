@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import eni.baptistedixneuf.fr.lokacarproject.bo.Categorie;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Client;
+import eni.baptistedixneuf.fr.lokacarproject.bo.PhotosVoiture;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
 
 /**
@@ -122,5 +123,32 @@ public class BDD {
         args.put("email", client.getEmail());
 
         update("clients", client.getId(), args);
+    }
+
+    public Cursor getPhotosVoitures(){
+        return base.rawQuery("SELECT _id, chemin, voiture " +
+                "FROM photos_voitures", null);
+    }
+
+    public Cursor getPhotosVoiture(int id){
+        return base.rawQuery("SELECT _id, chemin, voiture " +
+                "FROM photos_voitures where _id = " + id, null);
+    }
+
+    public void addPhotosVoiture(PhotosVoiture photosVoiture){
+        base.execSQL("INSERT INTO photos_voitures (chemin, voiture) VALUES " +
+                "('" + photosVoiture.getChemin() + "'," + photosVoiture.getVoiture().getId() + ")");
+    }
+
+    public void removePhotosVoiture(int id){
+        remove("photos_voitures", id);
+    }
+
+    public void updatePhotosVoiture(PhotosVoiture photosVoiture){
+        ContentValues args = new ContentValues();
+        args.put("chemin", photosVoiture.getChemin());
+        args.put("voiture", photosVoiture.getVoiture().getId());
+
+        update("photos_voitures", photosVoiture.getId(), args);
     }
 }

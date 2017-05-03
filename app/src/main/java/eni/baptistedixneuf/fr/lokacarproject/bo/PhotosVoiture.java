@@ -6,6 +6,7 @@ package eni.baptistedixneuf.fr.lokacarproject.bo;
 public class PhotosVoiture {
     private int id;
     private String chemin;
+    private Voiture voiture;
 
     public PhotosVoiture() {
     }
@@ -24,5 +25,13 @@ public class PhotosVoiture {
 
     public void setChemin(String chemin) {
         this.chemin = chemin;
+    }
+
+    public Voiture getVoiture() {
+        return voiture;
+    }
+
+    public void setVoiture(Voiture voiture) {
+        this.voiture = voiture;
     }
 }
