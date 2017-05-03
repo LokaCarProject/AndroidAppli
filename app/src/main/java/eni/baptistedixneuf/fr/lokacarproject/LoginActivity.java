@@ -3,7 +3,6 @@ package eni.baptistedixneuf.fr.lokacarproject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +20,7 @@ public class LoginActivity extends Activity {
         bouttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent detailIntent = new Intent(LoginActivity.this, ContractActivity.class);
+                Intent detailIntent = new Intent(LoginActivity.this, MenuActivity.class);
                 startActivity(detailIntent);
             }
         });
