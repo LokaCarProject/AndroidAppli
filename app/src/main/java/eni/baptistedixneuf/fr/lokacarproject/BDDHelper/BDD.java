@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import eni.baptistedixneuf.fr.lokacarproject.bo.Categorie;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Client;
+import eni.baptistedixneuf.fr.lokacarproject.bo.Contrat;
 import eni.baptistedixneuf.fr.lokacarproject.bo.EtatLieu;
 import eni.baptistedixneuf.fr.lokacarproject.bo.PhotosVoiture;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
@@ -179,5 +180,38 @@ public class BDD {
         args.put("contrat", etatLieu.getContrat().getId());
 
         update("etats_lieux", etatLieu.getId(), args);
+    }
+
+    public Cursor getContrats(){
+        return base.rawQuery("SELECT _id, dateDebut, dateFinPrevue, dateFinReel, rendu, client, voiture " +
+                "FROM contrats", null);
+    }
+
+    public Cursor getContrat(int id){
+        return base.rawQuery("SELECT _id, dateDebut, dateFinPrevue, dateFinReel, rendu, client, voiture " +
+                "FROM contrats where _id = " + id, null);
+    }
+
+    public void addContrat(Contrat contrat){
+        base.execSQL("INSERT INTO contrats (dateDebut, dateFinPrevue, dateFinReel, rendu, client, voiture) VALUES " +
+                "(" + contrat.getDebut().getTime() + "," + contrat.getFinPrevue().getTime() + ", "
+                    + contrat.getFinReel().getTime() + ", " + contrat.isRendu() + ","
+                    + contrat.getClient().getId() + "," + contrat.getVoiture().getId() + ",)");
+    }
+
+    public void removeContrat(int id){
+        remove("contrats", id);
+    }
+
+    public void updateContrat(Contrat contrat){
+        ContentValues args = new ContentValues();
+        args.put("dateDebut", contrat.getDebut().getTime());
+        args.put("dateFinPrevue", contrat.getFinPrevue().getTime());
+        args.put("dateFinReel", contrat.getFinReel().getTime());
+        args.put("rendu", contrat.isRendu());
+        args.put("client", contrat.getClient().getId());
+        args.put("voiture", contrat.getVoiture().getId());
+
+        update("contrats", contrat.getId(), args);
     }
 }

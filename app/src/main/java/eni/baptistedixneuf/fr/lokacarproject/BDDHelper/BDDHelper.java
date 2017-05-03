@@ -39,9 +39,9 @@ public class BDDHelper extends SQLiteOpenHelper {
                                             "mail TEXT NOT NULL)");
 
         db.execSQL("CREATE TABLE contrats (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                            "dateDebut DATETIME NOT NULL, " +
-                                            "dateFinPrevue DATETIME NOT NULL, " +
-                                            "dateFinReel DATETIME NOT NULL, " +
+                                            "dateDebut int NOT NULL, " +
+                                            "dateFinPrevue int NOT NULL, " +
+                                            "dateFinReel int NOT NULL, " +
                                             "rendu BOOLEAN NOT NULL, " +
                                             "client INTEGER NOT NULL, " +
                                             "voiture INTEGER NOT NULL, " +
