@@ -1,16 +1,31 @@
 package eni.baptistedixneuf.fr.lokacarproject.bo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by mmarin2015 on 03/05/2017.
  */
 public class Voiture {
+    private int id;
     private String marque;
     private String modele;
     private String couleur;
     private String immatriculation;
     private double prix;
+    private Categorie categorie;
+    private List<PhotosVoiture> photos;
 
     public Voiture() {
+        photos = new ArrayList<PhotosVoiture>();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMarque() {
