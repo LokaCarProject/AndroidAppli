@@ -13,8 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
-import eni.baptistedixneuf.fr.lokacarproject.fragment.ContractFragment;
-import eni.baptistedixneuf.fr.lokacarproject.fragment.VoitureFragment;
+import eni.baptistedixneuf.fr.lokacarproject.fragment.contrat.ContractFragment;
+import eni.baptistedixneuf.fr.lokacarproject.fragment.voiture.VoitureFragment;
 
 public class MenuActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {

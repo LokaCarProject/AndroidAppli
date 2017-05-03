@@ -1,34 +1,23 @@
-package eni.baptistedixneuf.fr.lokacarproject.fragment;
+package eni.baptistedixneuf.fr.lokacarproject.fragment.contrat;
 
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ListView;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
-import eni.baptistedixneuf.fr.lokacarproject.adaptater.voiture.VoitureAdaptater;
-import eni.baptistedixneuf.fr.lokacarproject.adaptater.voiture.VoitureContent;
-import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
-import eni.baptistedixneuf.fr.lokacarproject.dao.VoitureDao;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link VoitureFragment.OnFragmentInteractionListener} interface
+ * {@link AjoutContratFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link VoitureFragment#newInstance} factory method to
+ * Use the {@link AjoutContratFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VoitureFragment extends Fragment {
-
-
+public class AjoutContratFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -38,9 +27,6 @@ public class VoitureFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private ListView listeVoiture;
-    private Button buttonAjoutVoiture;
-
     private OnFragmentInteractionListener mListener;
 
     /**
@@ -49,11 +35,11 @@ public class VoitureFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment VoitureFragment.
+     * @return A new instance of fragment AjoutContratFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static VoitureFragment newInstance(String param1, String param2) {
-        VoitureFragment fragment = new VoitureFragment();
+    public static AjoutContratFragment newInstance(String param1, String param2) {
+        AjoutContratFragment fragment = new AjoutContratFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,7 +47,7 @@ public class VoitureFragment extends Fragment {
         return fragment;
     }
 
-    public VoitureFragment() {
+    public AjoutContratFragment() {
         // Required empty public constructor
     }
 
@@ -77,33 +63,9 @@ public class VoitureFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_voiture, container, false);
-
-        VoitureDao voitureDao = new VoitureDao(getActivity());
-        VoitureContent.ITEMS = voitureDao.getAll();
-
-        listeVoiture = (ListView) view.findViewById(R.id.fragement_voiture_listView);
-        VoitureAdaptater adapter = new VoitureAdaptater(getActivity(), VoitureContent.ITEMS);
-        listeVoiture.setAdapter(adapter);
-
-        buttonAjoutVoiture = (Button) view.findViewById(R.id.fragement_voiture_button);
-        buttonAjoutVoiture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.addToBackStack(null);
-                ft.replace(R.id.container, new AjoutVoitureFragment(), "NewFragmentTag");
-                ft.commit();
-            }
-        });
-        
         // Inflate the layout for this fragment
-        return view;
+        return inflater.inflate(R.layout.fragment_ajout_contrat, container, false);
     }
-
-
-
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -111,7 +73,6 @@ public class VoitureFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-
 
 
     @Override
@@ -125,7 +86,7 @@ public class VoitureFragment extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p/>
+     * <p>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.

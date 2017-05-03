@@ -1,6 +1,5 @@
-package eni.baptistedixneuf.fr.lokacarproject.fragment;
+package eni.baptistedixneuf.fr.lokacarproject.fragment.voiture;
 
-import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -11,10 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import eni.baptistedixneuf.fr.lokacarproject.MenuActivity;
 import eni.baptistedixneuf.fr.lokacarproject.R;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Categorie;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;

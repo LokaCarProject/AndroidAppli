@@ -1,38 +1,24 @@
-package eni.baptistedixneuf.fr.lokacarproject.fragment;
+package eni.baptistedixneuf.fr.lokacarproject.fragment.contrat;
 
 import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ListView;
-
-import java.util.Date;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
-import eni.baptistedixneuf.fr.lokacarproject.adaptater.contract.ContratAdaptater;
-import eni.baptistedixneuf.fr.lokacarproject.adaptater.contract.ContratContent;
-import eni.baptistedixneuf.fr.lokacarproject.adaptater.voiture.VoitureAdaptater;
-import eni.baptistedixneuf.fr.lokacarproject.adaptater.voiture.VoitureContent;
-import eni.baptistedixneuf.fr.lokacarproject.bo.Client;
-import eni.baptistedixneuf.fr.lokacarproject.bo.Contrat;
-import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ContractFragment.OnFragmentInteractionListener} interface
+ * {@link DetailContratFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ContractFragment#newInstance} factory method to
+ * Use the {@link DetailContratFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ContractFragment extends Fragment {
-
-
+public class DetailContratFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -44,21 +30,17 @@ public class ContractFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private ListView listeContrats;
-    private Button buttonAjoutContrat;
-
-
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ContractFragment.
+     * @return A new instance of fragment DetailContratFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ContractFragment newInstance(String param1, String param2) {
-        ContractFragment fragment = new ContractFragment();
+    public static DetailContratFragment newInstance(String param1, String param2) {
+        DetailContratFragment fragment = new DetailContratFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,7 +48,7 @@ public class ContractFragment extends Fragment {
         return fragment;
     }
 
-    public ContractFragment() {
+    public DetailContratFragment() {
         // Required empty public constructor
     }
 
@@ -82,36 +64,8 @@ public class ContractFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_contract, container, false);
-
-
-        Contrat contrat = new Contrat();
-        contrat.setId(0);
-        contrat.setDebut(new Date());
-        Client client = new Client();
-        client.setNom("Dixneuf");
-        client.setPrenom("Baptiste");
-        contrat.setClient(client);
-        ContratContent.addItem(contrat);
-
-        listeContrats = (ListView) view.findViewById(R.id.fragement_contrats_listView);
-        ContratAdaptater adapter = new ContratAdaptater(getActivity(), ContratContent.ITEMS);
-        listeContrats.setAdapter(adapter);
-
-
-        buttonAjoutContrat = (Button) view.findViewById(R.id.fragement_contrats_button);
-        buttonAjoutContrat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.addToBackStack(null);
-                ft.replace(R.id.container, new AjoutContratFragment(), "NewFragmentTag");
-                ft.commit();
-            }
-        });
-
         // Inflate the layout for this fragment
-        return view;
+        return inflater.inflate(R.layout.fragment_detail_contrat, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -120,7 +74,6 @@ public class ContractFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-
 
     @Override
     public void onDetach() {
