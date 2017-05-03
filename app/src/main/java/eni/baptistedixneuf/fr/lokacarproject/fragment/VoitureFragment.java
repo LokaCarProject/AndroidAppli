@@ -1,6 +1,5 @@
 package eni.baptistedixneuf.fr.lokacarproject.fragment;
 
-import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -10,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
-import eni.baptistedixneuf.fr.lokacarproject.adaptater.VoitureAdaptater;
-import eni.baptistedixneuf.fr.lokacarproject.adaptater.VoitureContent;
+import eni.baptistedixneuf.fr.lokacarproject.adaptater.voiture.VoitureAdaptater;
+import eni.baptistedixneuf.fr.lokacarproject.adaptater.voiture.VoitureContent;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
 
 /**

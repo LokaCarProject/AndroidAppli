@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:id="@+id/element_liste_contrat_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        tools:text="id"
+        />
+
+    <TextView
+        android:id="@+id/element_liste_contrat_dateDebut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        tools:text="dateDebut"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/element_liste_contrat_nom"
+        android:layout_marginStart="54dp" />
+
+    <TextView
+        android:id="@+id/element_liste_contrat_nom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        tools:text="nom"
+        android:layout_alignTop="@+id/element_liste_contrat_prenom"
+        android:layout_alignStart="@+id/element_liste_contrat_id" />
+
+    <TextView
+        android:id="@+id/element_liste_contrat_prenom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        tools:text="prenom"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/element_liste_contrat_dateDebut"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

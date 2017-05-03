@@ -7,8 +7,18 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.Date;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
+import eni.baptistedixneuf.fr.lokacarproject.adaptater.contract.ContratAdaptater;
+import eni.baptistedixneuf.fr.lokacarproject.adaptater.contract.ContratContent;
+import eni.baptistedixneuf.fr.lokacarproject.adaptater.voiture.VoitureAdaptater;
+import eni.baptistedixneuf.fr.lokacarproject.adaptater.voiture.VoitureContent;
+import eni.baptistedixneuf.fr.lokacarproject.bo.Client;
+import eni.baptistedixneuf.fr.lokacarproject.bo.Contrat;
+import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +29,8 @@ import eni.baptistedixneuf.fr.lokacarproject.R;
  * create an instance of this fragment.
  */
 public class ContractFragment extends Fragment {
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,6 +41,8 @@ public class ContractFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private ListView listeContrats;
 
     /**
      * Use this factory method to create a new instance of
@@ -64,8 +78,24 @@ public class ContractFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view= inflater.inflate(R.layout.fragment_contract, container, false);
+
+
+        Contrat contrat = new Contrat();;
+        contrat.setId(0);
+        contrat.setDebut(new Date());
+        Client client = new Client();
+        client.setNom("Dixneuf");
+        client.setPrenom("Baptiste");
+        contrat.setClient(client);
+        ContratContent.addItem(contrat);
+
+        listeContrats = (ListView) view.findViewById(R.id.fragement_contrats_listView);
+        ContratAdaptater adapter = new ContratAdaptater(getActivity(), ContratContent.ITEMS);
+        listeContrats.setAdapter(adapter);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contract, container, false);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

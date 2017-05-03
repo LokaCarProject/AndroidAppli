@@ -1,4 +1,4 @@
-package eni.baptistedixneuf.fr.lokacarproject.adaptater;
+package eni.baptistedixneuf.fr.lokacarproject.adaptater.voiture;
 
 import android.content.Context;
 import android.view.LayoutInflater;
