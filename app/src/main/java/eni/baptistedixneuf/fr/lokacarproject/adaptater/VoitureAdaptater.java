@@ -31,7 +31,8 @@ public class VoitureAdaptater extends ArrayAdapter<Voiture> {
         VoitureViewHolder viewHolder = (VoitureViewHolder) convertView.getTag();
         if(viewHolder == null){
             viewHolder = new VoitureViewHolder();
-            viewHolder.nom = (TextView) convertView.findViewById(R.id.element_liste_voiture_nom);
+            viewHolder.immatriculation = (TextView) convertView.findViewById(R.id.element_liste_voiture_immatriculation);
+            viewHolder.modele = (TextView) convertView.findViewById(R.id.element_liste_voiture_modele);
             convertView.setTag(viewHolder);
         }
 
@@ -40,13 +41,14 @@ public class VoitureAdaptater extends ArrayAdapter<Voiture> {
         Voiture voiture = getItem(position);
 
         //il ne reste plus qu'à remplir notre vue
-        viewHolder.nom.setText(voiture.getImmatriculation());
+        viewHolder.immatriculation.setText(voiture.getImmatriculation());
+        viewHolder.modele.setText(voiture.getModele());
         return convertView;
     }
 
     private class VoitureViewHolder {
-        public TextView nom;
-
+        public TextView immatriculation;
+        public TextView modele;
     }
 }
 

@@ -74,8 +74,10 @@ public class VoitureFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_voiture, container, false);
 
+        //Remplacer par un appel en base
         Voiture voiture = new Voiture();
-        voiture.setImmatriculation("test");
+        voiture.setImmatriculation("AB 4782 44");
+        voiture.setModele("Audi A3");
         VoitureContent.addItem(voiture);
 
         listeVoiture = (ListView) view.findViewById(R.id.fragement_voiture_listView);

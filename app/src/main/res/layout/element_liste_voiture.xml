@@ -7,13 +7,25 @@
     >
 
     <TextView
-        android:id="@+id/element_liste_voiture_nom"
+        android:id="@+id/element_liste_voiture_immatriculation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:layout_marginLeft="10dp"
         android:textStyle="bold"
-        tools:text="Nom"
+        tools:text="immatriculation"
         />
+
+    <TextView
+        android:id="@+id/element_liste_voiture_modele"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        tools:text="modele"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="103dp" />
 
 </RelativeLayout>
