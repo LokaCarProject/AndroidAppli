@@ -46,21 +46,58 @@ public class VoitureDao extends Dao<Voiture>{
 
     @Override
     public Voiture get(int id) {
-        return null;
+        BDD bdd = new BDD();
+        Voiture voiture = new Voiture();
+        try {
+            bdd.open(context);
+            Cursor cursor = bdd.getVoiture(id);
+
+            while(cursor.moveToNext()){
+                voiture.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+                voiture.setModele(cursor.getString(cursor.getColumnIndex("modele")));
+                voiture.setCouleur(cursor.getString(cursor.getColumnIndex("couleur")));
+                voiture.setMarque(cursor.getString(cursor.getColumnIndex("marque")));
+                voiture.setImmatriculation(cursor.getString(cursor.getColumnIndex("immatriculation")));
+                voiture.setPrix(cursor.getDouble(cursor.getColumnIndex("prix")));
+                //TODO Gestion categorie
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return voiture;
     }
 
     @Override
     public void add(Voiture entity) {
-
+        BDD bdd = new BDD();
+        try {
+            bdd.open(context);
+            bdd.addVoiture(entity);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(Voiture entity) {
-
+        BDD bdd = new BDD();
+        try {
+            bdd.open(context);
+            bdd.updateVoiture(entity);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void remove(int id) {
-
+        BDD bdd = new BDD();
+        try {
+            bdd.open(context);
+            bdd.removeVoiture(id);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }
