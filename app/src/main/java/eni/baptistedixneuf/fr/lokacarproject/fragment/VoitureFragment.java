@@ -75,7 +75,7 @@ public class VoitureFragment extends Fragment {
         }
     }
 
-   
+
 
     @Override
     public void onDetach() {
