@@ -20,8 +20,10 @@
             android:name=".MenuActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".AjoutContratActivity"
+            android:label="@string/title_activity_ajout_contrat" >
+        </activity>
     </application>
-
-
 
 </manifest>
