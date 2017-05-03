@@ -24,4 +24,9 @@ public class BDD {
     public Cursor getCategories(){
         return base.rawQuery("SELECT _id, nom FROM categories", null);
     }
+
+    public Cursor getVoitures(){
+        return base.rawQuery("SELECT _id, modele, couleur, marque, immatriculation, prix, categorie " +
+                                "FROM voitures", null);
+    }
 }
