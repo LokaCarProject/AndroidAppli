@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.sql.SQLException;
 
+import eni.baptistedixneuf.fr.lokacarproject.bo.Categorie;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
 
 /**
@@ -37,6 +38,26 @@ public class BDD {
         return base.rawQuery("SELECT _id, nom FROM categories", null);
     }
 
+    public Cursor getCategorie(int id){
+        return base.rawQuery("SELECT _id, nom FROM categories where _id = " + id, null);
+    }
+
+    public void addCategorie(Categorie categorie){
+        base.execSQL("INSERT INTO categories (nom) VALUES ('" + categorie.getNom() + "')");
+    }
+
+    public void removeCategorie(int id){
+        remove("voitures", id);
+    }
+
+    public void updateCategorie(Categorie categorie){
+        ContentValues args = new ContentValues();
+        args.put("nom", categorie.getNom());
+
+        update("categories", categorie.getId(), args);
+    }
+
+
     public Cursor getVoitures(){
         return base.rawQuery("SELECT _id, modele, couleur, marque, immatriculation, prix, categorie " +
                                 "FROM voitures", null);
@@ -44,7 +65,7 @@ public class BDD {
 
     public Cursor getVoiture(int id){
         return base.rawQuery("SELECT _id, modele, couleur, marque, immatriculation, prix, categorie " +
-                "FROM voitures whete _id = " + id, null);
+                "FROM voitures where _id = " + id, null);
     }
 
     public void addVoiture(Voiture voiture){

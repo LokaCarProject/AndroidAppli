@@ -34,7 +34,10 @@ public class VoitureDao extends Dao<Voiture>{
                 voiture.setMarque(cursor.getString(cursor.getColumnIndex("marque")));
                 voiture.setImmatriculation(cursor.getString(cursor.getColumnIndex("immatriculation")));
                 voiture.setPrix(cursor.getDouble(cursor.getColumnIndex("prix")));
-                //TODO Gestion categorie
+
+                CategorieDao dao = new CategorieDao(this.context);
+                voiture.setCategorie(dao.get(cursor.getColumnIndex("categorie")));
+
                 voitures.add(voiture);
             }
         } catch (SQLException e){
@@ -59,7 +62,9 @@ public class VoitureDao extends Dao<Voiture>{
                 voiture.setMarque(cursor.getString(cursor.getColumnIndex("marque")));
                 voiture.setImmatriculation(cursor.getString(cursor.getColumnIndex("immatriculation")));
                 voiture.setPrix(cursor.getDouble(cursor.getColumnIndex("prix")));
-                //TODO Gestion categorie
+
+                CategorieDao dao = new CategorieDao(this.context);
+                voiture.setCategorie(dao.get(cursor.getColumnIndex("categorie")));
             }
         } catch (SQLException e){
             e.printStackTrace();
