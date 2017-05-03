@@ -55,6 +55,7 @@ public class BDDHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE etats_lieux (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                                 "chemin TEXT NOT NULL, " +
+                                                "avant BOOLEAN NOT NULL, " +
                                                 "contrat INTEGER NOT NULL, " +
                                                 "FOREIGN KEY (contrat) REFERENCES contrats(_id))");
     }

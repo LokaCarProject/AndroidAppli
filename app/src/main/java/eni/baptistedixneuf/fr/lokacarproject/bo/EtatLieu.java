@@ -7,8 +7,9 @@ import java.util.List;
  */
 public class EtatLieu {
     private int id;
-    private List<String> chemin;
+    private String chemin;
     private boolean avant;
+    private Contrat contrat;
 
     public EtatLieu() {
     }
@@ -25,11 +26,11 @@ public class EtatLieu {
         this.id = id;
     }
 
-    public List<String> getChemin() {
+    public String getChemin() {
         return chemin;
     }
 
-    public void setChemin(List<String> chemin) {
+    public void setChemin(String chemin) {
         this.chemin = chemin;
     }
 
@@ -39,5 +40,13 @@ public class EtatLieu {
 
     public void setAvant(boolean avant) {
         this.avant = avant;
+    }
+
+    public Contrat getContrat() {
+        return contrat;
+    }
+
+    public void setContrat(Contrat contrat) {
+        this.contrat = contrat;
     }
 }

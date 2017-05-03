@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import eni.baptistedixneuf.fr.lokacarproject.bo.Categorie;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Client;
+import eni.baptistedixneuf.fr.lokacarproject.bo.EtatLieu;
 import eni.baptistedixneuf.fr.lokacarproject.bo.PhotosVoiture;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
 
@@ -150,5 +151,33 @@ public class BDD {
         args.put("voiture", photosVoiture.getVoiture().getId());
 
         update("photos_voitures", photosVoiture.getId(), args);
+    }
+
+    public Cursor getEtatsLieux(){
+        return base.rawQuery("SELECT _id, chemin, avant, categorie " +
+                "FROM etats_lieux", null);
+    }
+
+    public Cursor getEtatLieu(int id){
+        return base.rawQuery("SELECT _id, chemin, avant, categorie " +
+                "FROM etats_lieux where _id = " + id, null);
+    }
+
+    public void addEtatLieu(EtatLieu etatLieu){
+        base.execSQL("INSERT INTO etats_lieux (chemin, avant, contrat) VALUES " +
+                "('" + etatLieu.getChemin() + "'," + etatLieu.isAvant() + ", " + etatLieu.getContrat().getId() + ")");
+    }
+
+    public void removeEtatLieu(int id){
+        remove("etats_lieux", id);
+    }
+
+    public void updateEtatLieu(EtatLieu etatLieu){
+        ContentValues args = new ContentValues();
+        args.put("chemin", etatLieu.getChemin());
+        args.put("avant", etatLieu.isAvant());
+        args.put("contrat", etatLieu.getContrat().getId());
+
+        update("etats_lieux", etatLieu.getId(), args);
     }
 }
