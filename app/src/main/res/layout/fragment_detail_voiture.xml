@@ -3,8 +3,164 @@
     android:layout_height="match_parent"
     tools:context="eni.baptistedixneuf.fr.lokacarproject.fragment.voiture.DetailVoitureFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="Détail d'une voiture" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragement_ajout_voiture">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Id:"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/fragement_ajout_voiture_textViewIdLabel"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Id"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/fragement_ajout_voiture_textViewId"
+            android:layout_below="@+id/fragement_ajout_voiture_textViewIdLabel"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Marque:"
+            android:id="@+id/fragement_ajout_voiture_textViewMarqueLabel"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/fragement_ajout_voiture_textViewId"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Marque"
+            android:id="@+id/fragement_ajout_voiture_textViewMarque"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/fragement_ajout_voiture_textViewMarqueLabel"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Modele:"
+            android:id="@+id/fragement_ajout_voiture_textViewModeleLabel"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/fragement_ajout_voiture_textViewMarque"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Modele"
+            android:id="@+id/fragement_ajout_voiture_textViewModele"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/fragement_ajout_voiture_textViewModeleLabel"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Couleur:"
+            android:id="@+id/fragement_ajout_voiture_textViewCouleurLabel"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/fragement_ajout_voiture_textViewModele"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Couleur"
+            android:id="@+id/fragement_ajout_voiture_textViewCouleur"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/fragement_ajout_voiture_textViewCouleurLabel"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Immatriculation:"
+            android:id="@+id/fragement_ajout_voiture_textViewImmatriculationLabel"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/fragement_ajout_voiture_textViewCouleur"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Immatriculation"
+            android:id="@+id/fragement_ajout_voiture_textViewImmatriculation"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/fragement_ajout_voiture_textViewImmatriculationLabel"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Prix:"
+            android:id="@+id/fragement_ajout_voiture_textViewPrixLabel"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/fragement_ajout_voiture_textViewImmatriculation"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Prix"
+            android:id="@+id/fragement_ajout_voiture_textViewPrix"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/fragement_ajout_voiture_textViewPrixLabel"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Categorie:"
+            android:id="@+id/fragement_ajout_voiture_textViewCategorieLabel"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/fragement_ajout_voiture_textViewPrix"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Categorie"
+            android:id="@+id/fragement_ajout_voiture_textViewCategorie"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_below="@+id/fragement_ajout_voiture_textViewCategorieLabel"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"/>
+
+    </RelativeLayout>
 </FrameLayout>

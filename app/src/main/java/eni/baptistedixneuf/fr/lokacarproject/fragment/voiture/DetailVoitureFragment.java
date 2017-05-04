@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
@@ -28,6 +29,13 @@ public class DetailVoitureFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private static Voiture voiture;
 
+    private TextView textViewId;
+    private TextView textViewMarque;
+    private TextView textViewModele;
+    private TextView textViewCouleur;
+    private TextView textViewImmatriculation;
+    private TextView textViewPrix;
+    private TextView textViewCategorie;
 
     private OnFragmentInteractionListener mListener;
 
@@ -66,6 +74,21 @@ public class DetailVoitureFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_detail_voiture, container, false);
         Log.d("Test", voiture.toString());
 
+        textViewId = (TextView) v.findViewById(R.id.fragement_ajout_voiture_textViewId);
+        textViewMarque = (TextView) v.findViewById(R.id.fragement_ajout_voiture_textViewMarque);
+        textViewModele = (TextView) v.findViewById(R.id.fragement_ajout_voiture_textViewModele);
+        textViewCouleur = (TextView) v.findViewById(R.id.fragement_ajout_voiture_textViewCouleur);
+        textViewImmatriculation = (TextView) v.findViewById(R.id.fragement_ajout_voiture_textViewImmatriculation);
+        textViewPrix = (TextView) v.findViewById(R.id.fragement_ajout_voiture_textViewPrix);
+        textViewCategorie = (TextView) v.findViewById(R.id.fragement_ajout_voiture_textViewCategorie);
+
+        textViewId.setText(""+voiture.getId());
+        textViewMarque.setText(voiture.getMarque());
+        textViewModele.setText(voiture.getModele());
+        textViewCouleur.setText(voiture.getCouleur());
+        textViewImmatriculation.setText(voiture.getImmatriculation());
+        textViewPrix.setText(""+voiture.getPrix());
+        textViewCategorie.setText(voiture.getCategorie().getNom());
 
         // Inflate the layout for this fragment
         return v;
