@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
@@ -45,8 +47,8 @@ public class DetailVoitureFragment extends Fragment {
     private TextView textViewImmatriculation;
     private TextView textViewPrix;
     private TextView textViewCategorie;
-    private TextView textViewImage;
     private Button buttonSuppression;
+    private ImageView image;
 
     private OnFragmentInteractionListener mListener;
 
@@ -92,7 +94,7 @@ public class DetailVoitureFragment extends Fragment {
         textViewImmatriculation = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewImmatriculation);
         textViewPrix = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewPrix);
         textViewCategorie = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewCategorie);
-        textViewImage = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewImage);
+        image = (ImageView) v.findViewById(R.id.fragement_detail_voiture_imageView);
         buttonSuppression = (Button) v.findViewById(R.id.fragement_detail_voiture_button_suppression);
 
         textViewId.setText(""+voiture.getId());
@@ -100,9 +102,10 @@ public class DetailVoitureFragment extends Fragment {
         textViewModele.setText(voiture.getModele());
         textViewCouleur.setText(voiture.getCouleur());
         textViewImmatriculation.setText(voiture.getImmatriculation());
-        textViewPrix.setText(""+voiture.getPrix());
+        textViewPrix.setText("" + voiture.getPrix());
         if(voiture.getPhotos() != null && voiture.getPhotos().size() != 0){
-            textViewImage.setText(voiture.getPhotos().get(0).getChemin());
+            Uri photo = Uri.fromFile(new File(voiture.getPhotos().get(0).getChemin()));
+            image.setImageURI(photo);
         }
         textViewCategorie.setText(voiture.getCategorie().getNom());
 
