@@ -92,7 +92,7 @@ public class ChoisirVoitureFragment extends Fragment implements AbsListView.OnIt
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_voiture_contrat, container, false);
+        View view = inflater.inflate(R.layout.fragment_voiture_list, container, false);
 
         listeVoitures = (ListView) view.findViewById(R.id.list_voiture);
         VoitureDao dao = new VoitureDao(getActivity());

@@ -88,7 +88,7 @@ public class ClientExistantFragment extends Fragment implements AbsListView.OnIt
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_client, container, false);
+        View view = inflater.inflate(R.layout.fragment_client_list, container, false);
 
         listeClients = (ListView) view.findViewById(R.id.list_client_existant);
         ClientDao dao = new ClientDao(getActivity());
