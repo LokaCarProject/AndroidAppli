@@ -1,9 +1,12 @@
 package eni.baptistedixneuf.fr.lokacarproject.bo;
 
+import java.io.Serializable;
+
 /**
  * Created by mmarin2015 on 03/05/2017.
  */
-public class Client {
+public class Client implements Serializable {
+
     private int id;
     private String nom;
     private String prenom;

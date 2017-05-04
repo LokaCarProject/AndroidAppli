@@ -1,11 +1,13 @@
 package eni.baptistedixneuf.fr.lokacarproject.bo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by mmarin2015 on 03/05/2017.
  */
-public class Contrat {
+public class Contrat implements Serializable{
+
     private int id;
     private Date debut;
     private Date finPrevue;
