@@ -3,8 +3,240 @@
     android:layout_height="match_parent"
     tools:context="eni.baptistedixneuf.fr.lokacarproject.fragment.contrat.DetailContratFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="Page détail du contrat" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:layout_gravity="bottom">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/layoutClient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/titreClient"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Client"
+                    android:textSize="22dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/black"/>
+
+                <TextView
+                    android:id="@+id/lblNom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="nom"
+                    android:textSize="15dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/titreClient"/>
+
+                <TextView
+                    android:id="@+id/lblPrenom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="prenom"
+                    android:textSize="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/lblNom"
+                    android:layout_below="@id/titreClient"
+                    />
+
+                <TextView
+                    android:id="@+id/lblMail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="mail"
+                    android:textSize="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/lblNom"/>
+
+                <TextView
+                    android:id="@+id/lblTel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="tel"
+                    android:textSize="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/lblMail"/>
+
+                <TextView
+                    android:id="@+id/lblAdresse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="adresse"
+                    android:textSize="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/lblTel"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutVehicule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutClient"
+                >
+
+                <TextView
+                    android:id="@+id/titreVehicule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Véhicule"
+                    android:textSize="22dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@android:color/black"/>
+
+                <TextView
+                    android:id="@+id/lblMarque"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="marque"
+                    android:textSize="15dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/titreVehicule"/>
+
+                <TextView
+                    android:id="@+id/lblModele"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="modele"
+                    android:textSize="15dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/titreVehicule"
+                    android:layout_toRightOf="@id/lblMarque"/>
+
+                <TextView
+                    android:id="@+id/lblCategorie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categorie"
+                    android:textSize="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/lblMarque"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutContrat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutVehicule"
+                >
+
+                <TextView
+                    android:id="@+id/titreContrat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contrat"
+                    android:textSize="22dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@android:color/black"/>
+
+                <TextView
+                    android:id="@+id/lblInfoDateDebut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date debut :"
+                    android:textSize="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/titreContrat"/>
+
+                <TextView
+                    android:id="@+id/lblDateDebut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="date"
+                    android:textSize="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/titreContrat"
+                    android:layout_toRightOf="@id/lblInfoDateDebut"/>
+
+                <TextView
+                    android:id="@+id/lblInfoDateFin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date fin intiale : "
+                    android:textSize="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/lblInfoDateDebut"/>
+
+                <TextView
+                    android:id="@+id/lblDateFin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="date"
+                    android:textSize="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/lblDateDebut"
+                    android:layout_toRightOf="@id/lblInfoDateFin"/>
+
+                <TextView
+                    android:id="@+id/lblInfoVehiculeRendu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vehicule rendu :"
+                    android:textSize="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/lblInfoDateFin"
+                   />
+
+                <Switch
+                    android:id="@+id/swVehiculeRendu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/lblDateFin"
+                    android:layout_toRightOf="@id/lblInfoVehiculeRendu"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:enabled="false"
+                    android:checked="true"/>
+
+                <TextView
+                    android:id="@+id/lblInfoDateFinReel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date fin reel : "
+                    android:textSize="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/lblInfoVehiculeRendu"/>
+
+                <TextView
+                    android:id="@+id/lblDatFinReel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="date"
+                    android:textSize="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/swVehiculeRendu"
+                    android:layout_toRightOf="@id/lblInfoDateFinReel"/>
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
 </FrameLayout>

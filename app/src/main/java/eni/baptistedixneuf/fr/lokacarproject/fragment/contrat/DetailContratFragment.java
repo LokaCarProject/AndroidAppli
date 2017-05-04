@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
+import eni.baptistedixneuf.fr.lokacarproject.bo.Contrat;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,12 +21,11 @@ import eni.baptistedixneuf.fr.lokacarproject.R;
  * create an instance of this fragment.
  */
 public class DetailContratFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    public static final String ARG_PARAM1 = "contrat";
 
-    // TODO: Rename and change types of parameters
+    private static Contrat contrat;
+
     private String mParam1;
     private String mParam2;
 
@@ -38,13 +39,13 @@ public class DetailContratFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment DetailContratFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static DetailContratFragment newInstance(String param1, String param2) {
         DetailContratFragment fragment = new DetailContratFragment();
+
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable(ARG_PARAM1, contrat);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -56,8 +57,9 @@ public class DetailContratFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            contrat = (Contrat)getArguments().getSerializable(ARG_PARAM1);
+            Log.d("Lol", contrat.toString());
+
         }
     }
 
@@ -68,7 +70,6 @@ public class DetailContratFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_detail_contrat, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -92,7 +93,6 @@ public class DetailContratFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
 
