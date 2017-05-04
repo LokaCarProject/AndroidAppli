@@ -35,7 +35,8 @@
         android:textColor="@android:color/black"
         android:textStyle="bold"
         tools:text="nom"
-        android:layout_alignTop="@+id/element_liste_contrat_prenom"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/element_liste_contrat_dateDebut"
         android:layout_alignStart="@+id/element_liste_contrat_id" />
 
     <TextView
@@ -45,8 +46,8 @@
         android:textColor="@android:color/black"
         android:textStyle="bold"
         tools:text="prenom"
-        android:layout_marginTop="27dp"
-        android:layout_below="@+id/element_liste_contrat_dateDebut"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginLeft="10dp"
+        android:layout_alignTop="@+id/element_liste_contrat_nom"
+        android:layout_toEndOf="@+id/element_liste_contrat_dateDebut" />
 
 </RelativeLayout>

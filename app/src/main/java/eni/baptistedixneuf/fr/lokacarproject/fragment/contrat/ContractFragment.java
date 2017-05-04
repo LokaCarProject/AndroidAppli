@@ -19,6 +19,7 @@ import eni.baptistedixneuf.fr.lokacarproject.adaptater.contract.ContratAdaptater
 import eni.baptistedixneuf.fr.lokacarproject.adaptater.contract.ContratContent;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Client;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Contrat;
+import eni.baptistedixneuf.fr.lokacarproject.dao.ContratDao;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,17 +82,9 @@ public class ContractFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_contract, container, false);
 
-
-        Contrat contrat = new Contrat();
-        contrat.setId(0);
-        contrat.setDebut(new Date());
-        Client client = new Client();
-        client.setNom("Dixneuf");
-        client.setPrenom("Baptiste");
-        contrat.setClient(client);
-        ContratContent.addItem(contrat);
-
         listeContrats = (ListView) view.findViewById(R.id.fragement_contrats_listView);
+        ContratDao dao = new ContratDao(getActivity());
+        ContratContent.ITEMS = dao.getAll();
         ContratAdaptater adapter = new ContratAdaptater(getActivity(), ContratContent.ITEMS);
         listeContrats.setAdapter(adapter);
         listeContrats.setOnItemClickListener(new AdapterView.OnItemClickListener() {

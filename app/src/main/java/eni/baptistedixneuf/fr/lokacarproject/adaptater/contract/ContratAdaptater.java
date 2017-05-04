@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Contrat;
@@ -44,7 +46,8 @@ public class ContratAdaptater extends ArrayAdapter<Contrat> {
 
         //il ne reste plus qu'à remplir notre vue
         viewHolder.id.setText(""+contrat.getId());
-        viewHolder.dateDebut.setText(contrat.getDebut().toString());
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+        viewHolder.dateDebut.setText(dateFormatter.format(contrat.getDebut()));
         viewHolder.nom.setText(contrat.getClient().getNom());
         viewHolder.prenom.setText(contrat.getClient().getPrenom());
         return convertView;

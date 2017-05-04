@@ -33,7 +33,9 @@ public class ContratDao extends Dao<Contrat>{
                 contrat.setId(cursor.getInt(cursor.getColumnIndex("_id")));
                 contrat.setDebut(new Date(cursor.getLong(cursor.getColumnIndex("dateDebut"))));
                 contrat.setFinPrevue(new Date(cursor.getLong(cursor.getColumnIndex("dateFinPrevue"))));
-                contrat.setFinReel(new Date(cursor.getLong(cursor.getColumnIndex("dateFinReel"))));
+                if(cursor.getLong(cursor.getColumnIndex("dateFinReel")) > 0){
+                    contrat.setFinReel(new Date(cursor.getLong(cursor.getColumnIndex("dateFinReel"))));
+                }
                 boolean rendu = cursor.getInt(cursor.getColumnIndex("rendu")) > 0;
                 contrat.setRendu(rendu);
                 ClientDao cDao = new ClientDao(this.context);
@@ -62,8 +64,9 @@ public class ContratDao extends Dao<Contrat>{
                 contrat.setId(cursor.getInt(cursor.getColumnIndex("_id")));
                 contrat.setDebut(new Date(cursor.getLong(cursor.getColumnIndex("dateDebut"))));
                 contrat.setFinPrevue(new Date(cursor.getLong(cursor.getColumnIndex("dateFinPrevue"))));
-                contrat.setFinReel(new Date(cursor.getLong(cursor.getColumnIndex("dateFinReel"))));
-                boolean rendu = cursor.getInt(cursor.getColumnIndex("rendu")) > 0;
+                if(cursor.getLong(cursor.getColumnIndex("dateFinReel")) > 0){
+                    contrat.setFinReel(new Date(cursor.getLong(cursor.getColumnIndex("dateFinReel"))));
+                }                boolean rendu = cursor.getInt(cursor.getColumnIndex("rendu")) > 0;
                 contrat.setRendu(rendu);
                 ClientDao cDao = new ClientDao(this.context);
                 contrat.setClient(cDao.get(cursor.getInt(cursor.getColumnIndex("client"))));
