@@ -13,7 +13,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+
 import eni.baptistedixneuf.fr.lokacarproject.R;
+import eni.baptistedixneuf.fr.lokacarproject.bo.PhotosVoiture;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
 import eni.baptistedixneuf.fr.lokacarproject.dao.VoitureDao;
 
@@ -40,6 +45,7 @@ public class DetailVoitureFragment extends Fragment {
     private TextView textViewImmatriculation;
     private TextView textViewPrix;
     private TextView textViewCategorie;
+    private TextView textViewImage;
     private Button buttonSuppression;
 
     private OnFragmentInteractionListener mListener;
@@ -86,6 +92,7 @@ public class DetailVoitureFragment extends Fragment {
         textViewImmatriculation = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewImmatriculation);
         textViewPrix = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewPrix);
         textViewCategorie = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewCategorie);
+        textViewImage = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewImage);
         buttonSuppression = (Button) v.findViewById(R.id.fragement_detail_voiture_button_suppression);
 
         textViewId.setText(""+voiture.getId());
@@ -94,6 +101,9 @@ public class DetailVoitureFragment extends Fragment {
         textViewCouleur.setText(voiture.getCouleur());
         textViewImmatriculation.setText(voiture.getImmatriculation());
         textViewPrix.setText(""+voiture.getPrix());
+        if(voiture.getPhotos() != null && voiture.getPhotos().size() != 0){
+            textViewImage.setText(voiture.getPhotos().get(0).getChemin());
+        }
         textViewCategorie.setText(voiture.getCategorie().getNom());
 
 

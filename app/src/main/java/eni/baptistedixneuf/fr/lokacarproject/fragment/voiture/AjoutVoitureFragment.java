@@ -1,20 +1,37 @@
 package eni.baptistedixneuf.fr.lokacarproject.fragment.voiture;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import eni.baptistedixneuf.fr.lokacarproject.R;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Categorie;
+import eni.baptistedixneuf.fr.lokacarproject.bo.PhotosVoiture;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
+import eni.baptistedixneuf.fr.lokacarproject.dao.PhotosVoitureDao;
 import eni.baptistedixneuf.fr.lokacarproject.dao.VoitureDao;
 
 /**
@@ -44,8 +61,20 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
     private EditText prix;
     private RadioButton cat1;
 
+    private Button boutonEnregistrer;
+    private Button boutonPrendreUnePhoto;
+
+    private ImageView imageView;
 
     private OnFragmentInteractionListener mListener;
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    static final int REQUEST_TAKE_PHOTO = 1;
+
+    String mCurrentPhotoPath;
+
+    List<PhotosVoiture> photos;
 
     /**
      * Use this factory method to create a new instance of
@@ -85,10 +114,16 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_ajout_voiture, container, false);
         voiture = new Voiture();
+        photos = new ArrayList<>();
 
+        boutonEnregistrer = (Button)view.findViewById(R.id.saveVoiture);
+        boutonEnregistrer.setOnClickListener(this);
 
-        Button b = (Button)view.findViewById(R.id.saveVoiture);
-        b.setOnClickListener(this);
+        boutonPrendreUnePhoto = (Button)view.findViewById(R.id.buttonPhoto);
+        boutonPrendreUnePhoto.setOnClickListener(this);
+
+        imageView = (ImageView) view.findViewById(R.id.imageView);
+
 
         marque = (EditText)view.findViewById(R.id.editMarque);
         modele = (EditText)view.findViewById(R.id.editModel);
@@ -134,6 +169,20 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
 
     public void onClick(View v)
     {
+        Button boutonClique = (Button) v;
+
+        switch (boutonClique.getId()){
+            case R.id.buttonPhoto :
+                cliqueSurPrendrePhoto(v);
+                break;
+            case R.id.saveVoiture :
+                cliqueSurEnregistrer(v);
+                break;
+        }
+
+    }
+
+    private void cliqueSurEnregistrer(View v) {
         if(verification(v))
         {
             voiture.setMarque(marque.getText().toString());
@@ -154,8 +203,16 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
                 categorie = "categorie2";
             }
             voiture.setCategorie(cat);
+
             VoitureDao voitureDao = new VoitureDao(getActivity());
             voitureDao.add(voiture);
+            voiture.setId(voitureDao.getInsertId());
+            voiture.setPhotos(photos);
+            for (PhotosVoiture itemPhoto: voiture.getPhotos()){
+                itemPhoto.setVoiture(voiture);
+                PhotosVoitureDao photosVoitureDao = new PhotosVoitureDao(getActivity());
+                photosVoitureDao.add(itemPhoto);
+            }
             Toast.makeText(getContext(), "Voiture enregistrée", Toast.LENGTH_LONG).show();
             AjoutVoitureFragment.this.getFragmentManager().popBackStack();
 
@@ -165,6 +222,7 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
             Toast.makeText(getContext(), "Tous les champs doivent etre renseigné", Toast.LENGTH_LONG).show();
         }
     }
+
 
     public boolean verification(View v)
     {
@@ -181,4 +239,58 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
 
         return ok;
     }
+
+    private void cliqueSurPrendrePhoto(View v) {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                Log.d("Test", ex.getMessage());
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(getContext(),
+                        "com.example.android.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            }
+        }
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+            Uri photo = Uri.fromFile(new File(mCurrentPhotoPath));
+            imageView.setImageURI(photo);
+        }
+
+        PhotosVoiture newPhoto = new PhotosVoiture();
+        newPhoto.setChemin(mCurrentPhotoPath);
+        photos.add(newPhoto);
+    }
+
+
+
+
 }

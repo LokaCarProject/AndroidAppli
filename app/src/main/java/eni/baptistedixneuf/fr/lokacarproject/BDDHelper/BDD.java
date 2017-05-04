@@ -146,6 +146,11 @@ public class BDD {
                 "FROM photos_voitures where _id = " + id, null);
     }
 
+    public Cursor getPhotosVoitureByIdVoiture(int idVoiture){
+        return base.rawQuery("SELECT _id, chemin, voiture " +
+                "FROM photos_voitures where voiture = " + idVoiture, null);
+    }
+
     public void addPhotosVoiture(PhotosVoiture photosVoiture){
         base.execSQL("INSERT INTO photos_voitures (chemin, voiture) VALUES " +
                 "('" + photosVoiture.getChemin() + "'," + photosVoiture.getVoiture().getId() + ")");

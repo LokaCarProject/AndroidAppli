@@ -10,102 +10,124 @@
         android:id="@+id/scrollView"
         android:layout_gravity="bottom">
 
-        <RelativeLayout
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|bottom">
+
+
+        <EditText
+           android:id="@+id/editMarque"
+            android:hint="Marque"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"/>
 
+        <EditText
+            android:id="@+id/editModel"
+            android:layout_below="@id/editMarque"
+            android:hint="Model"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"/>
 
-            <EditText
-               android:id="@+id/editMarque"
-                android:hint="Marque"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"/>
+        <EditText
+            android:id="@+id/editCouleur"
+            android:layout_below="@id/editModel"
+            android:hint="Couleur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"/>
 
-            <EditText
-                android:id="@+id/editModel"
-                android:layout_below="@id/editMarque"
-                android:hint="Model"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"/>
+        <TextView
+            android:id="@+id/lblCategorie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editCouleur"
+            android:text="Catégorie :"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"/>
 
-            <EditText
-                android:id="@+id/editCouleur"
-                android:layout_below="@id/editModel"
-                android:hint="Couleur"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"/>
+        <RadioGroup
+            android:id="@+id/groupCategorie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lblCategorie"
+            android:layout_marginLeft="15dp">
 
-            <TextView
-                android:id="@+id/lblCategorie"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/editCouleur"
-                android:text="Catégorie :"
-                android:textSize="20dp"
-                android:layout_marginLeft="10dp"/>
-
-            <RadioGroup
-                android:id="@+id/groupCategorie"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/lblCategorie"
-                android:layout_marginLeft="15dp">
-
-                <RadioButton
-                    android:id="@+id/cat1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" Cat 1"
-                    android:textSize="16dp"
-                    android:checked="true"/>
-                <RadioButton
-                    android:id="@+id/cat2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" Cat 2"
-                    android:textSize="16dp"/>
-            </RadioGroup>
-
-            <EditText
-                android:id="@+id/editImat"
-                android:layout_below="@id/groupCategorie"
-                android:hint="Imatriculation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"/>
-
-            <EditText
-                android:id="@+id/editPrix"
-                android:layout_below="@id/editImat"
-                android:hint="cout/jour"
-                android:inputType="numberDecimal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"/>
-
-            <Button
-                android:id="@+id/saveVoiture"
+            <RadioButton
+                android:id="@+id/cat1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/editPrix"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:text="Enregistrer"
-                android:layout_marginBottom="15dp"
-                android:layout_marginRight="15dp"/>
-        </RelativeLayout>
-    </ScrollView>
+                android:text=" Cat 1"
+                android:textSize="16dp"
+                android:checked="true"/>
+            <RadioButton
+                android:id="@+id/cat2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Cat 2"
+                android:textSize="16dp"/>
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/editImat"
+            android:layout_below="@id/groupCategorie"
+            android:hint="Imatriculation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"/>
+
+        <EditText
+            android:id="@+id/editPrix"
+            android:layout_below="@id/editImat"
+            android:hint="cout/jour"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prendre une photo"
+            android:id="@+id/buttonPhoto"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_below="@+id/editPrix"
+            android:layout_alignStart="@+id/groupCategorie" />
+
+        <Button
+            android:id="@+id/saveVoiture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enregistrer"
+            android:layout_marginRight="15dp"
+            android:layout_gravity="right|bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_alignEnd="@+id/editPrix" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_alignStart="@+id/editPrix"
+            android:layout_above="@+id/saveVoiture"
+            android:layout_alignEnd="@+id/buttonPhoto"
+            android:layout_below="@+id/buttonPhoto" />
+
+    </RelativeLayout>
+
+
 </FrameLayout>

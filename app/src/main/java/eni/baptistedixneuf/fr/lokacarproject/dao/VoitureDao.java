@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eni.baptistedixneuf.fr.lokacarproject.BDDHelper.BDD;
+import eni.baptistedixneuf.fr.lokacarproject.bo.PhotosVoiture;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
 
 /**
@@ -38,6 +39,9 @@ public class VoitureDao extends Dao<Voiture>{
                 CategorieDao dao = new CategorieDao(this.context);
                 voiture.setCategorie(dao.get(cursor.getColumnIndex("categorie")));
 
+                PhotosVoitureDao photosVoitureDao = new PhotosVoitureDao(this.context);
+                List<PhotosVoiture> photos =  photosVoitureDao.getByIdVoiture(voiture.getId());
+                voiture.setPhotos(photos);
                 voitures.add(voiture);
             }
         } catch (SQLException e){
@@ -105,4 +109,9 @@ public class VoitureDao extends Dao<Voiture>{
             e.printStackTrace();
         }
     }
+
+    public int getInsertId() {
+        return super.getInsertId("voitures");
+    }
+
 }

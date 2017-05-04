@@ -77,4 +77,12 @@ public class Voiture implements Serializable{
     public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
     }
+
+    public List<PhotosVoiture> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<PhotosVoiture> photos) {
+        this.photos = photos;
+    }
 }

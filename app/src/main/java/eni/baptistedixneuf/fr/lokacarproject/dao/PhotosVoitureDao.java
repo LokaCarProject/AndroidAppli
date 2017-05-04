@@ -9,6 +9,7 @@ import java.util.List;
 
 import eni.baptistedixneuf.fr.lokacarproject.BDDHelper.BDD;
 import eni.baptistedixneuf.fr.lokacarproject.bo.PhotosVoiture;
+import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
 
 /**
  * Created by pcormier2015 on 03/05/2017.
@@ -64,6 +65,31 @@ public class PhotosVoitureDao extends Dao<PhotosVoiture>{
         }
 
         return photosVoiture;
+    }
+
+    public List<PhotosVoiture> getByIdVoiture(int idVoiture) {
+        BDD bdd = new BDD();
+        List<PhotosVoiture> photos = new ArrayList<>();
+        try {
+            bdd.open(context);
+            Cursor cursor = bdd.getPhotosVoitureByIdVoiture(idVoiture);
+
+            while(cursor.moveToNext()){
+                PhotosVoiture photosVoiture = new PhotosVoiture();
+                photosVoiture.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+                photosVoiture.setChemin(cursor.getString(cursor.getColumnIndex("chemin")));
+
+                Voiture voiture = new Voiture();
+                voiture.setId(cursor.getColumnIndex("voiture"));
+                photosVoiture.setVoiture(voiture);
+
+                photos.add(photosVoiture);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return photos;
     }
 
     @Override
