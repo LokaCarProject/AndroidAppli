@@ -17,8 +17,10 @@ import java.util.Date;
 import eni.baptistedixneuf.fr.lokacarproject.R;
 import eni.baptistedixneuf.fr.lokacarproject.adaptater.contract.ContratAdaptater;
 import eni.baptistedixneuf.fr.lokacarproject.adaptater.contract.ContratContent;
+import eni.baptistedixneuf.fr.lokacarproject.bo.Categorie;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Client;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Contrat;
+import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
 import eni.baptistedixneuf.fr.lokacarproject.dao.ContratDao;
 
 /**

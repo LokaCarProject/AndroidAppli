@@ -29,14 +29,38 @@
                     android:textColor="@android:color/black"/>
 
                 <TextView
+                    android:id="@+id/lblInfoNom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nom :"
+                    android:textSize="15dp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/titreClient" />
+
+                <TextView
                     android:id="@+id/lblNom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="nom"
                     android:textSize="15dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/lblInfoNom"
                     android:layout_below="@id/titreClient"/>
+
+                <TextView
+                    android:id="@+id/lblInfoPrenom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prenom :"
+                    android:textSize="15dp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/lblNom"
+                    android:layout_below="@id/titreClient" />
 
                 <TextView
                     android:id="@+id/lblPrenom"
@@ -44,11 +68,22 @@
                     android:layout_height="wrap_content"
                     android:text="prenom"
                     android:textSize="15dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@id/lblNom"
+                    android:layout_toRightOf="@id/lblInfoPrenom"
                     android:layout_below="@id/titreClient"
                     />
+
+                <TextView
+                    android:id="@+id/lblInfoMail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email : "
+                    android:textSize="15dp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/lblNom"/>
 
                 <TextView
                     android:id="@+id/lblMail"
@@ -57,8 +92,20 @@
                     android:text="mail"
                     android:textSize="15dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_below="@id/lblNom"
+                    android:layout_toRightOf="@id/lblInfoMail"/>
+
+                <TextView
+                    android:id="@+id/lblInfoTel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Téléphone : "
+                    android:textSize="15dp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="25dp"
-                    android:layout_below="@id/lblNom"/>
+                    android:layout_below="@id/lblInfoMail"/>
 
                 <TextView
                     android:id="@+id/lblTel"
@@ -67,8 +114,20 @@
                     android:text="tel"
                     android:textSize="15dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/lblInfoTel"
                     android:layout_below="@id/lblMail"/>
+
+                <TextView
+                    android:id="@+id/lblInfoAdresse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Adresse : "
+                    android:textSize="15dp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/lblInfoTel"/>
 
                 <TextView
                     android:id="@+id/lblAdresse"
@@ -76,9 +135,8 @@
                     android:layout_height="wrap_content"
                     android:text="adresse"
                     android:textSize="15dp"
-                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="25dp"
-                    android:layout_below="@id/lblTel"/>
+                    android:layout_below="@id/lblInfoAdresse"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -99,14 +157,40 @@
                     android:textColor="@android:color/black"/>
 
                 <TextView
+                    android:id="@+id/lblInfoMarque"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Marque : "
+                android:textSize="15dp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="25dp"
+                android:layout_below="@id/titreVehicule"/>
+
+
+                <TextView
                     android:id="@+id/lblMarque"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="marque"
                     android:textSize="15dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_below="@id/titreVehicule"/>
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_below="@id/titreVehicule"
+                    android:layout_toRightOf="@id/lblInfoMarque"/>
+
+
+                <TextView
+                    android:id="@+id/lblInfoModele"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Modèle : "
+                    android:textSize="15dp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_below="@id/titreVehicule"
+                    android:layout_toRightOf="@id/lblMarque"/>
 
                 <TextView
                     android:id="@+id/lblModele"
@@ -114,11 +198,23 @@
                     android:layout_height="wrap_content"
                     android:text="modele"
                     android:textSize="15dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_below="@id/titreVehicule"
-                    android:layout_toRightOf="@id/lblMarque"/>
+                    android:layout_toRightOf="@id/lblInfoModele"/>
 
+
+                <TextView
+                    android:id="@+id/lblInfoCategorie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Catégorie : "
+                    android:textSize="15dp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_below="@id/lblInfoMarque"
+                    />
                 <TextView
                     android:id="@+id/lblCategorie"
                     android:layout_width="wrap_content"
@@ -126,8 +222,9 @@
                     android:text="Categorie"
                     android:textSize="15dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_below="@id/lblMarque"/>
+                    android:layout_marginLeft="5dp"
+                    android:layout_below="@id/lblMarque"
+                    android:layout_toRightOf="@id/lblInfoCategorie"/>
 
             </RelativeLayout>
 
@@ -152,8 +249,9 @@
                     android:id="@+id/lblInfoDateDebut"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date debut :"
+                    android:text="Date début :"
                     android:textSize="15dp"
+                    android:textColor="@android:color/black"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_below="@id/titreContrat"/>
@@ -165,7 +263,7 @@
                     android:text="date"
                     android:textSize="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_below="@id/titreContrat"
                     android:layout_toRightOf="@id/lblInfoDateDebut"/>
 
@@ -175,6 +273,7 @@
                     android:layout_height="wrap_content"
                     android:text="Date fin intiale : "
                     android:textSize="15dp"
+                    android:textColor="@android:color/black"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="25dp"
                     android:layout_below="@id/lblInfoDateDebut"/>
@@ -186,7 +285,7 @@
                     android:text="date"
                     android:textSize="15dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_below="@id/lblDateDebut"
                     android:layout_toRightOf="@id/lblInfoDateFin"/>
 
@@ -196,6 +295,7 @@
                     android:layout_height="wrap_content"
                     android:text="Vehicule rendu :"
                     android:textSize="15dp"
+                    android:textColor="@android:color/black"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="25dp"
                     android:layout_below="@id/lblInfoDateFin"
@@ -207,10 +307,10 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/lblDateFin"
                     android:layout_toRightOf="@id/lblInfoVehiculeRendu"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="15dp"
-                    android:enabled="false"
-                    android:checked="true"/>
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:enabled="true"
+                    android:checked="false"/>
 
                 <TextView
                     android:id="@+id/lblInfoDateFinReel"
@@ -218,25 +318,23 @@
                     android:layout_height="wrap_content"
                     android:text="Date fin reel : "
                     android:textSize="15dp"
-                    android:layout_marginTop="20dp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="15dp"
                     android:layout_marginLeft="25dp"
                     android:layout_below="@id/lblInfoVehiculeRendu"/>
 
                 <TextView
-                    android:id="@+id/lblDatFinReel"
+                    android:id="@+id/lblDateFinReel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="date"
                     android:textSize="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_below="@id/swVehiculeRendu"
                     android:layout_toRightOf="@id/lblInfoDateFinReel"/>
 
             </RelativeLayout>
-
-
         </RelativeLayout>
-
     </ScrollView>
 </FrameLayout>

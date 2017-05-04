@@ -8,6 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
+import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Contrat;
@@ -26,8 +31,26 @@ public class DetailContratFragment extends Fragment {
 
     private static Contrat contrat;
 
-    private String mParam1;
-    private String mParam2;
+    //Partie client
+    private TextView nom;
+    private TextView prenom;
+    private TextView tel;
+    private TextView email;
+    private TextView adresse;
+
+    //Partie vehicule
+    private TextView marque;
+    private TextView modele;
+    private TextView categorie;
+
+    //partie Contrat
+    private TextView dateDebut;
+    private TextView dateFinPrev;
+    private Switch rendu;
+    private TextView dateRetour;
+
+
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -58,18 +81,53 @@ public class DetailContratFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             contrat = (Contrat)getArguments().getSerializable(ARG_PARAM1);
-            Log.d("Lol", contrat.toString());
-
         }
+
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_contrat, container, false);
+        View view = inflater.inflate(R.layout.fragment_detail_contrat, container, false);
+
+        nom = (TextView)view.findViewById(R.id.lblNom);
+        prenom = (TextView)view.findViewById(R.id.lblPrenom);
+        adresse = (TextView)view.findViewById(R.id.lblAdresse);
+        tel = (TextView)view.findViewById(R.id.lblTel);
+        email = (TextView)view.findViewById(R.id.lblMail);
+
+        marque =(TextView)view.findViewById(R.id.lblMarque);
+        modele = (TextView)view.findViewById(R.id.lblModele);
+        categorie = (TextView)view.findViewById(R.id.lblCategorie);
+
+        dateDebut = (TextView)view.findViewById(R.id.lblDateDebut);
+        dateFinPrev = (TextView)view.findViewById(R.id.lblDateFin);
+
+        fillInfo();
+
+        return view;
     }
 
+
+    private void fillInfo()
+    {
+        nom.setText(contrat.getClient().getNom());
+        prenom.setText(contrat.getClient().getPrenom());
+        adresse.setText(contrat.getClient().getAdresse());
+        tel.setText(contrat.getClient().getTel());
+        email.setText(contrat.getClient().getEmail());
+
+        marque.setText(contrat.getVoiture().getMarque());
+        modele.setText(contrat.getVoiture().getModele());
+        categorie.setText(contrat.getVoiture().getCategorie().getNom());
+
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.FRANCE);
+
+        dateDebut.setText(format.format(contrat.getDebut()));
+        dateFinPrev.setText(format.format(contrat.getFinPrevue()));
+    }
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
