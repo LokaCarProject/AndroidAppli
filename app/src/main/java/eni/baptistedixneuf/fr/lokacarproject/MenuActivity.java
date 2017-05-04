@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
+import eni.baptistedixneuf.fr.lokacarproject.fragment.administration.AdministrationFragment;
 import eni.baptistedixneuf.fr.lokacarproject.fragment.contrat.ContractFragment;
 import eni.baptistedixneuf.fr.lokacarproject.fragment.voiture.VoitureFragment;
 
@@ -57,6 +58,10 @@ public class MenuActivity extends Activity
             case 1:
                 fragment = new VoitureFragment();
                 break;
+            case 2:
+                fragment = new AdministrationFragment();
+                break;
+
         }
         fragmentManager.beginTransaction()
                 .replace(R.id.container, fragment)
