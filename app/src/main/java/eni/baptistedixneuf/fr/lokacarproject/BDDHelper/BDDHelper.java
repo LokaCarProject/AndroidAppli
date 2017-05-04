@@ -41,7 +41,7 @@ public class BDDHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE contrats (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                             "dateDebut int NOT NULL, " +
                                             "dateFinPrevue int NOT NULL, " +
-                                            "dateFinReel int NOT NULL, " +
+                                            "dateFinReel int, " +
                                             "rendu BOOLEAN NOT NULL, " +
                                             "client INTEGER NOT NULL, " +
                                             "voiture INTEGER NOT NULL, " +

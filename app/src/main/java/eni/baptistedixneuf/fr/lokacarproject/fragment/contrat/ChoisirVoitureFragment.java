@@ -1,35 +1,32 @@
 package eni.baptistedixneuf.fr.lokacarproject.fragment.contrat;
 
+import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link AjoutContratFragment.OnFragmentInteractionListener} interface
+ * {@link ChoisirVoitureFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link AjoutContratFragment#newInstance} factory method to
+ * Use the {@link ChoisirVoitureFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AjoutContratFragment extends Fragment {
+public class ChoisirVoitureFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    public static final String BUNDLE_CLIENT = "client";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private Button clientExistant;
-    private Button newClient;
 
     private OnFragmentInteractionListener mListener;
 
@@ -39,11 +36,11 @@ public class AjoutContratFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AjoutContratFragment.
+     * @return A new instance of fragment ChoisirVoitureFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AjoutContratFragment newInstance(String param1, String param2) {
-        AjoutContratFragment fragment = new AjoutContratFragment();
+    public static ChoisirVoitureFragment newInstance(String param1, String param2) {
+        ChoisirVoitureFragment fragment = new ChoisirVoitureFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -51,7 +48,7 @@ public class AjoutContratFragment extends Fragment {
         return fragment;
     }
 
-    public AjoutContratFragment() {
+    public ChoisirVoitureFragment() {
         // Required empty public constructor
     }
 
@@ -68,14 +65,7 @@ public class AjoutContratFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_ajout_contrat, container, false);
-        clientExistant = (Button)view.findViewById(R.id.buttonClientExistant);
-        clientExistant.setOnClickListener(clientExistantListener);
-
-        newClient = (Button)view.findViewById(R.id.buttonNewClient);
-        newClient.setOnClickListener(newClientListener);
-
-        return view;
+        return inflater.inflate(R.layout.fragment_choisir_voiture, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -85,6 +75,16 @@ public class AjoutContratFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnFragmentInteractionListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
 
     @Override
     public void onDetach() {
@@ -97,7 +97,7 @@ public class AjoutContratFragment extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
+     * <p/>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
@@ -107,21 +107,4 @@ public class AjoutContratFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-    private View.OnClickListener newClientListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            NewClientFragment fragment = new NewClientFragment();
-            getFragmentManager().beginTransaction()
-                    .addToBackStack(null)
-                    .replace(R.id.container, fragment)
-                    .commit();
-        }
-    };
-
-    private View.OnClickListener clientExistantListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-        }
-    };
 }

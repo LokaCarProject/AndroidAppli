@@ -10,7 +10,6 @@ import java.util.List;
 
 import eni.baptistedixneuf.fr.lokacarproject.BDDHelper.BDD;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Contrat;
-import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
 
 /**
  * Created by pcormier2015 on 03/05/2017.

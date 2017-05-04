@@ -100,4 +100,8 @@ public class ClientDao extends Dao<Client>{
             e.printStackTrace();
         }
     }
+
+    public int getInsertId() {
+        return super.getInsertId("clients");
+    }
 }

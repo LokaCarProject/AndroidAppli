@@ -3,8 +3,45 @@
     android:layout_height="match_parent"
     tools:context="eni.baptistedixneuf.fr.lokacarproject.fragment.contrat.AjoutContratFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="Ajout d'un contrat" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Ajout d&apos;un contrat"
+            android:id="@+id/textViewContrat"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Gestion du client"
+            android:id="@+id/textViewCli"
+            android:layout_below="@+id/textViewContrat"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sélectionner un client existant"
+            android:id="@+id/buttonClientExistant"
+            android:layout_marginTop="53dp"
+            android:layout_below="@+id/textViewCli"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Créer un nouveau client"
+            android:id="@+id/buttonNewClient"
+            android:layout_below="@+id/buttonClientExistant"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+    </RelativeLayout>
 </FrameLayout>

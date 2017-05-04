@@ -29,6 +29,15 @@ public class BDD {
         base = helper.getWritableDatabase();
     }
 
+    public int getInsertID(String table) {
+        final String MY_QUERY = "SELECT MAX(_id) FROM " + table;
+        Cursor cur = base.rawQuery(MY_QUERY, null);
+        cur.moveToFirst();
+        int ID = cur.getInt(0);
+        cur.close();
+        return ID;
+    }
+
     public void remove(String table, int id){
         base.delete(table, "_id=" + id, null);
     }
@@ -97,17 +106,17 @@ public class BDD {
 
 
     public Cursor getClients(){
-        return base.rawQuery("SELECT _id, nom, prenom, adresse, telephone, email " +
+        return base.rawQuery("SELECT _id, nom, prenom, adresse, telephone, mail " +
                 "FROM clients", null);
     }
 
     public Cursor getClient(int id){
-        return base.rawQuery("SELECT _id, nom, prenom, adresse, telephone, email " +
+        return base.rawQuery("SELECT _id, nom, prenom, adresse, telephone, mail " +
                 "FROM clients where _id = " + id, null);
     }
 
     public void addClient(Client client){
-        base.execSQL("INSERT INTO clients (nom, prenom, adresse, telephone, email) VALUES " +
+        base.execSQL("INSERT INTO clients (nom, prenom, adresse, telephone, mail) VALUES " +
                 "('" + client.getNom() + "','" + client.getPrenom() + "','" + client.getAdresse()
                 + "','" + client.getTel() + "','" + client.getEmail() + "')");
     }
@@ -122,7 +131,7 @@ public class BDD {
         args.put("prenom", client.getPrenom());
         args.put("adresse", client.getAdresse());
         args.put("telephone", client.getTel());
-        args.put("email", client.getEmail());
+        args.put("mail", client.getEmail());
 
         update("clients", client.getId(), args);
     }
