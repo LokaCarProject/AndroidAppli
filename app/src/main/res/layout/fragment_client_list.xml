@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="eni.baptistedixneuf.fr.lokacarproject.fragment.contrat.ClientExistantFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Ajout d&apos;un contrat"
+            android:id="@+id/tvContrat"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal|top" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Choix d&apos;un client"
+            android:id="@+id/tvClient"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_below="@+id/tvContrat"
+            android:layout_centerHorizontal="true" />
+
+        <ListView android:id="@+id/list_client_existant" android:layout_width="match_parent"
+            android:layout_height="378dp"
+            android:choiceMode="singleChoice"
+        android:layout_gravity="center_horizontal|bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tvClient" />
+    </RelativeLayout>
+</FrameLayout>

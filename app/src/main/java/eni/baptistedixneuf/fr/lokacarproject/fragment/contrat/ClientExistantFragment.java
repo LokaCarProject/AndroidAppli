@@ -3,7 +3,6 @@ package eni.baptistedixneuf.fr.lokacarproject.fragment.contrat;
 import android.app.Activity;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +14,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
-import eni.baptistedixneuf.fr.lokacarproject.adaptater.voiture.VoitureAdaptater;
+import eni.baptistedixneuf.fr.lokacarproject.adaptater.client.ClientAdaptater;
+import eni.baptistedixneuf.fr.lokacarproject.adaptater.client.ClientContent;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Client;
-import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
-import eni.baptistedixneuf.fr.lokacarproject.dao.VoitureDao;
+import eni.baptistedixneuf.fr.lokacarproject.dao.ClientDao;
 import eni.baptistedixneuf.fr.lokacarproject.fragment.contrat.dummy.DummyContent;
 
 /**
@@ -30,17 +29,17 @@ import eni.baptistedixneuf.fr.lokacarproject.fragment.contrat.dummy.DummyContent
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public class ChoisirVoitureFragment extends Fragment implements AbsListView.OnItemClickListener {
+public class ClientExistantFragment extends Fragment implements AbsListView.OnItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private ListView listeVoitures;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ListView listeClients;
 
     private OnFragmentInteractionListener mListener;
 
@@ -54,11 +53,10 @@ public class ChoisirVoitureFragment extends Fragment implements AbsListView.OnIt
      * Views.
      */
     private ListAdapter mAdapter;
-    private Client client;
 
     // TODO: Rename and change types of parameters
-    public static ChoisirVoitureFragment newInstance(String param1, String param2) {
-        ChoisirVoitureFragment fragment = new ChoisirVoitureFragment();
+    public static ClientExistantFragment newInstance(String param1, String param2) {
+        ClientExistantFragment fragment = new ClientExistantFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -70,7 +68,7 @@ public class ChoisirVoitureFragment extends Fragment implements AbsListView.OnIt
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ChoisirVoitureFragment() {
+    public ClientExistantFragment() {
     }
 
     @Override
@@ -80,8 +78,6 @@ public class ChoisirVoitureFragment extends Fragment implements AbsListView.OnIt
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
-            client = (Client)getArguments().getSerializable(AjoutContratFragment.BUNDLE_CLIENT);
         }
 
         // TODO: Change Adapter to display your content
@@ -92,22 +88,22 @@ public class ChoisirVoitureFragment extends Fragment implements AbsListView.OnIt
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_voiture_contrat, container, false);
+        View view = inflater.inflate(R.layout.fragment_client, container, false);
 
-        listeVoitures = (ListView) view.findViewById(R.id.list_voiture);
-        VoitureDao dao = new VoitureDao(getActivity());
-        VoitureAdaptater adapter = new VoitureAdaptater(getActivity(), dao.getAll());
-        listeVoitures.setAdapter(adapter);
-        listeVoitures.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listeClients = (ListView) view.findViewById(R.id.list_client_existant);
+        ClientDao dao = new ClientDao(getActivity());
+
+        ClientAdaptater adapter = new ClientAdaptater(getActivity(), dao.getAll());
+        listeClients.setAdapter(adapter);
+        listeClients.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                InfoContratFragment fragment = new InfoContratFragment();
-                Voiture entry = (Voiture) parent.getAdapter().getItem(position);
+                ChoisirVoitureFragment fragment = new ChoisirVoitureFragment();
+                Client entry = (Client) parent.getAdapter().getItem(position);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(AjoutContratFragment.BUNDLE_CLIENT, client);
-                bundle.putSerializable(AjoutContratFragment.BUNDLE_VOITURE, entry);
+                bundle.putSerializable(AjoutContratFragment.BUNDLE_CLIENT, entry);
                 fragment.setArguments(bundle);
                 getFragmentManager().beginTransaction()
                         .addToBackStack(null)

@@ -175,7 +175,7 @@ public class BDD {
 
     public void addEtatLieu(EtatLieu etatLieu){
         base.execSQL("INSERT INTO etats_lieux (chemin, avant, contrat) VALUES " +
-                "('" + etatLieu.getChemin() + "'," + etatLieu.isAvant() + ", " + etatLieu.getContrat().getId() + ")");
+                "('" + etatLieu.getChemin() + "'," + booleanToString(etatLieu.isAvant()) + ", " + etatLieu.getContrat().getId() + ")");
     }
 
     public void removeEtatLieu(int id){
@@ -185,7 +185,7 @@ public class BDD {
     public void updateEtatLieu(EtatLieu etatLieu){
         ContentValues args = new ContentValues();
         args.put("chemin", etatLieu.getChemin());
-        args.put("avant", etatLieu.isAvant());
+        args.put("avant", booleanToString(etatLieu.isAvant()));
         args.put("contrat", etatLieu.getContrat().getId());
 
         update("etats_lieux", etatLieu.getId(), args);
@@ -202,10 +202,17 @@ public class BDD {
     }
 
     public void addContrat(Contrat contrat){
-        base.execSQL("INSERT INTO contrats (dateDebut, dateFinPrevue, dateFinReel, rendu, client, voiture) VALUES " +
-                "(" + contrat.getDebut().getTime() + "," + contrat.getFinPrevue().getTime() + ", "
-                    + contrat.getFinReel().getTime() + ", " + contrat.isRendu() + ","
-                    + contrat.getClient().getId() + "," + contrat.getVoiture().getId() + ",)");
+        String req = "INSERT INTO contrats (dateDebut, dateFinPrevue, dateFinReel, rendu, client, voiture) VALUES " +
+                "(" + contrat.getDebut().getTime() + "," + contrat.getFinPrevue().getTime() + ", ";
+        if(contrat.getFinReel() != null){
+            req += contrat.getFinReel().getTime();
+        }else {
+            req += "0";
+        }
+        req += ", " + booleanToString(contrat.isRendu()) + ","
+                + contrat.getClient().getId() + "," + contrat.getVoiture().getId() + ")";
+
+        base.execSQL(req);
     }
 
     public void removeContrat(int id){
@@ -216,11 +223,20 @@ public class BDD {
         ContentValues args = new ContentValues();
         args.put("dateDebut", contrat.getDebut().getTime());
         args.put("dateFinPrevue", contrat.getFinPrevue().getTime());
-        args.put("dateFinReel", contrat.getFinReel().getTime());
-        args.put("rendu", contrat.isRendu());
+        if(contrat.getFinReel() != null){
+            args.put("dateFinReel", contrat.getFinReel().getTime());
+        }
+        args.put("rendu", booleanToString(contrat.isRendu()));
         args.put("client", contrat.getClient().getId());
         args.put("voiture", contrat.getVoiture().getId());
 
         update("contrats", contrat.getId(), args);
+    }
+
+    private String booleanToString(boolean cible){
+        if(cible){
+            return "1";
+        }
+        return "0";
     }
 }

@@ -24,6 +24,7 @@ public class AjoutContratFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     public static final String BUNDLE_CLIENT = "client";
+    public static final String BUNDLE_VOITURE = "voiture";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -121,7 +122,11 @@ public class AjoutContratFragment extends Fragment {
     private View.OnClickListener clientExistantListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+            ClientExistantFragment fragment = new ClientExistantFragment();
+            getFragmentManager().beginTransaction()
+                    .addToBackStack(null)
+                    .replace(R.id.container, fragment)
+                    .commit();
         }
     };
 }

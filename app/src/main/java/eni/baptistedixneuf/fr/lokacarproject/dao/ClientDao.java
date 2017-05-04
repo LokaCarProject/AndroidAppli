@@ -34,7 +34,7 @@ public class ClientDao extends Dao<Client>{
                 client.setPrenom(cursor.getString(cursor.getColumnIndex("prenom")));
                 client.setAdresse(cursor.getString(cursor.getColumnIndex("adresse")));
                 client.setTel(cursor.getString(cursor.getColumnIndex("telephone")));
-                client.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+                client.setEmail(cursor.getString(cursor.getColumnIndex("mail")));
 
                 clients.add(client);
             }
@@ -59,7 +59,7 @@ public class ClientDao extends Dao<Client>{
                 client.setPrenom(cursor.getString(cursor.getColumnIndex("prenom")));
                 client.setAdresse(cursor.getString(cursor.getColumnIndex("adresse")));
                 client.setTel(cursor.getString(cursor.getColumnIndex("telephone")));
-                client.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+                client.setEmail(cursor.getString(cursor.getColumnIndex("mail")));
             }
         } catch (SQLException e){
             e.printStackTrace();
