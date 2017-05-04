@@ -3,6 +3,8 @@ package eni.baptistedixneuf.fr.lokacarproject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +24,25 @@ public class LoginActivity extends Activity {
 
         bouttonLogin = (Button) findViewById(R.id.activity_login_button);
         motDePasse = (TextView) findViewById(R.id.editTextMotDePasse);
+        motDePasse.setOnKeyListener(new View.OnKeyListener()
+        {
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
+                if (event.getAction() == KeyEvent.ACTION_DOWN)
+                {
+                    switch (keyCode)
+                    {
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            LoginActivity.this.bouttonLogin.performClick();
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
 
         bouttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override

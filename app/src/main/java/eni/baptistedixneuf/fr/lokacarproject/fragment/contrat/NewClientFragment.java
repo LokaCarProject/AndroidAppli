@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,6 +89,12 @@ public class NewClientFragment extends Fragment {
         tel = (EditText) view.findViewById(R.id.editTel);
         mail = (EditText) view.findViewById(R.id.editEmail);
 
+        nom.setOnKeyListener(enterListener);
+        prenom.setOnKeyListener(enterListener);
+        adresse.setOnKeyListener(enterListener);
+        tel.setOnKeyListener(enterListener);
+        mail.setOnKeyListener(enterListener);
+
         return view;
     }
 
@@ -142,6 +149,26 @@ public class NewClientFragment extends Fragment {
                     .addToBackStack(null)
                     .replace(R.id.container, fragment)
                     .commit();
+        }
+    };
+
+    private  View.OnKeyListener enterListener = new View.OnKeyListener()
+    {
+        public boolean onKey(View v, int keyCode, KeyEvent event)
+        {
+            if (event.getAction() == android.view.KeyEvent.ACTION_DOWN)
+            {
+                switch (keyCode)
+                {
+                    case android.view.KeyEvent.KEYCODE_DPAD_CENTER:
+                    case android.view.KeyEvent.KEYCODE_ENTER:
+                        NewClientFragment.this.enregistrer.performClick();
+                        return true;
+                    default:
+                        break;
+                }
+            }
+            return false;
         }
     };
 }
