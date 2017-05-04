@@ -1,6 +1,7 @@
 package eni.baptistedixneuf.fr.lokacarproject.fragment.voiture;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -8,10 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
+import eni.baptistedixneuf.fr.lokacarproject.dao.VoitureDao;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +40,7 @@ public class DetailVoitureFragment extends Fragment {
     private TextView textViewImmatriculation;
     private TextView textViewPrix;
     private TextView textViewCategorie;
+    private Button buttonSuppression;
 
     private OnFragmentInteractionListener mListener;
 
@@ -74,13 +79,14 @@ public class DetailVoitureFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_detail_voiture, container, false);
         Log.d("Test", voiture.toString());
 
-        textViewId = (TextView) v.findViewById(R.id.fragement_ajout_voiture_textViewId);
-        textViewMarque = (TextView) v.findViewById(R.id.fragement_ajout_voiture_textViewMarque);
-        textViewModele = (TextView) v.findViewById(R.id.fragement_ajout_voiture_textViewModele);
-        textViewCouleur = (TextView) v.findViewById(R.id.fragement_ajout_voiture_textViewCouleur);
-        textViewImmatriculation = (TextView) v.findViewById(R.id.fragement_ajout_voiture_textViewImmatriculation);
-        textViewPrix = (TextView) v.findViewById(R.id.fragement_ajout_voiture_textViewPrix);
-        textViewCategorie = (TextView) v.findViewById(R.id.fragement_ajout_voiture_textViewCategorie);
+        textViewId = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewId);
+        textViewMarque = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewMarque);
+        textViewModele = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewModele);
+        textViewCouleur = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewCouleur);
+        textViewImmatriculation = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewImmatriculation);
+        textViewPrix = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewPrix);
+        textViewCategorie = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewCategorie);
+        buttonSuppression = (Button) v.findViewById(R.id.fragement_detail_voiture_button_suppression);
 
         textViewId.setText(""+voiture.getId());
         textViewMarque.setText(voiture.getMarque());
@@ -90,9 +96,25 @@ public class DetailVoitureFragment extends Fragment {
         textViewPrix.setText(""+voiture.getPrix());
         textViewCategorie.setText(voiture.getCategorie().getNom());
 
+
+        buttonSuppression.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                suppressionVoiture();
+                Toast.makeText(getContext(), "Voiture supprimé", Toast.LENGTH_SHORT).show();
+                DetailVoitureFragment.this.getFragmentManager().popBackStack();
+            }
+        });
+
         // Inflate the layout for this fragment
         return v;
     }
+
+    private void suppressionVoiture(){
+        VoitureDao voitureDao = new VoitureDao(getActivity());
+        voitureDao.remove(voiture.getId());
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

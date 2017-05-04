@@ -77,7 +77,7 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_ajout_voiture, container, false);
         voiture = new Voiture();
-        Button b = (Button)view.findViewById(R.id.saveVoiture);
+        final Button b = (Button)view.findViewById(R.id.saveVoiture);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
