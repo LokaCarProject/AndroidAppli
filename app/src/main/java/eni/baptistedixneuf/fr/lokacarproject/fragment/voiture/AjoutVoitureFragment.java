@@ -37,6 +37,14 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
 
     private Voiture  voiture;
 
+    private EditText marque;
+    private EditText modele;
+    private EditText couleur;
+    private EditText immatriculation;
+    private EditText prix;
+    private RadioButton cat1;
+
+
     private OnFragmentInteractionListener mListener;
 
     /**
@@ -77,48 +85,18 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_ajout_voiture, container, false);
         voiture = new Voiture();
-        final Button b = (Button)view.findViewById(R.id.saveVoiture);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                EditText marque = (EditText)view.findViewById(R.id.editMarque);
-                EditText modele = (EditText)view.findViewById(R.id.editModel);
-                EditText immatriculation = (EditText)view.findViewById(R.id.editImat);
-                EditText prix = (EditText)view.findViewById(R.id.editPrix);
-                RadioButton cat1 = (RadioButton)view.findViewById(R.id.cat1);
-                EditText couleur = (EditText)view.findViewById(R.id.editCouleur);
 
-                if(verification(view))
-                {
-                    voiture.setMarque(marque.getText().toString());
-                    voiture.setModele(modele.getText().toString());
-                    voiture.setCouleur(couleur.getText().toString());
-                    voiture.setImmatriculation(immatriculation.getText().toString());
-                    voiture.setPrix(Double.parseDouble(prix.getText().toString()));
+        Button b = (Button)view.findViewById(R.id.saveVoiture);
+        b.setOnClickListener(this);
 
-                    Categorie cat = new Categorie();
-                    String categorie;
-                    if(cat1.isChecked())
-                    {
-                        categorie = "categorie1";
-                    }
-                    else
-                    {
-                        categorie = "categorie2";
-                    }
-                    voiture.setCategorie(cat);
-                    VoitureDao voitureDao = new VoitureDao(getActivity());
-                    voitureDao.add(voiture);
-                    Log.d("test", "Voiture enregistrer");
-                }
-                else
-                {
-                    Toast.makeText(getContext(), "Tous les champs doivent etre renseigné", Toast.LENGTH_LONG);
-                }
+        marque = (EditText)view.findViewById(R.id.editMarque);
+        modele = (EditText)view.findViewById(R.id.editModel);
+        immatriculation = (EditText)view.findViewById(R.id.editImat);
+        prix = (EditText)view.findViewById(R.id.editPrix);
+        couleur = (EditText)view.findViewById(R.id.editCouleur);
+        cat1 = (RadioButton)view.findViewById(R.id.cat1);
 
-            }
-        });
 
 
 
@@ -156,13 +134,6 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
 
     public void onClick(View v)
     {
-        EditText marque = (EditText)v.findViewById(R.id.editMarque);
-        EditText modele = (EditText)v.findViewById(R.id.editModel);
-        EditText immatriculation = (EditText)v.findViewById(R.id.editImat);
-        EditText prix = (EditText)v.findViewById(R.id.editPrix);
-        RadioButton cat1 = (RadioButton)v.findViewById(R.id.cat1);
-        EditText couleur = (EditText)v.findViewById(R.id.editCouleur);
-
         if(verification(v))
         {
             voiture.setMarque(marque.getText().toString());
@@ -173,6 +144,7 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
 
             Categorie cat = new Categorie();
             String categorie;
+
             if(cat1.isChecked())
             {
                 categorie = "categorie1";
@@ -184,11 +156,13 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
             voiture.setCategorie(cat);
             VoitureDao voitureDao = new VoitureDao(getActivity());
             voitureDao.add(voiture);
-            Log.d("test", "Voiture enregistrer");
+            Toast.makeText(getContext(), "Voiture enregistrée", Toast.LENGTH_LONG).show();
+            AjoutVoitureFragment.this.getFragmentManager().popBackStack();
+
         }
         else
         {
-            Toast.makeText(getContext(), "Tous les champs doivent etre renseigné", Toast.LENGTH_LONG);
+            Toast.makeText(getContext(), "Tous les champs doivent etre renseigné", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -196,11 +170,6 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
     {
         boolean ok = true;
 
-        EditText marque = (EditText)v.findViewById(R.id.editMarque);
-        EditText modele = (EditText)v.findViewById(R.id.editModel);
-        EditText immatriculation = (EditText)v.findViewById(R.id.editImat);
-        EditText prix = (EditText)v.findViewById(R.id.editPrix);
-        EditText couleur = (EditText)v.findViewById(R.id.editCouleur);
         if(marque ==null  || modele==null || immatriculation == null || prix == null || couleur == null)
         {
             ok=false;
@@ -211,7 +180,5 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
         }
 
         return ok;
-
     }
-
 }
