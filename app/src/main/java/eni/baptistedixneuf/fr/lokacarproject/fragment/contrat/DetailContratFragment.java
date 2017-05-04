@@ -8,14 +8,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Contrat;
+import eni.baptistedixneuf.fr.lokacarproject.dao.ContratDao;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,7 +29,7 @@ import eni.baptistedixneuf.fr.lokacarproject.bo.Contrat;
  * Use the {@link DetailContratFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DetailContratFragment extends Fragment {
+public class DetailContratFragment extends Fragment implements CompoundButton.OnCheckedChangeListener {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     public static final String ARG_PARAM1 = "contrat";
 
@@ -104,6 +108,10 @@ public class DetailContratFragment extends Fragment {
 
         dateDebut = (TextView)view.findViewById(R.id.lblDateDebut);
         dateFinPrev = (TextView)view.findViewById(R.id.lblDateFin);
+        dateRetour=(TextView)view.findViewById(R.id.lblDateFinReel);
+        rendu = (Switch)view.findViewById(R.id.swVehiculeRendu);
+        rendu.setOnCheckedChangeListener(this);
+
 
         fillInfo();
 
@@ -127,6 +135,13 @@ public class DetailContratFragment extends Fragment {
 
         dateDebut.setText(format.format(contrat.getDebut()));
         dateFinPrev.setText(format.format(contrat.getFinPrevue()));
+
+        rendu.setChecked(contrat.isRendu());
+        Log.d("Test", ""+contrat.isRendu());
+        if(contrat.getFinReel() != null){
+            dateRetour.setText(format.format(contrat.getFinReel()));
+        }
+
     }
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -138,6 +153,28 @@ public class DetailContratFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+        if(isChecked && contrat.getFinReel() == null)
+        {
+            rendu.setEnabled(false);
+            contrat.setFinReel(new Date());
+            contrat.setRendu(true);
+            ContratDao contratDAO = new ContratDao(getActivity());
+            contratDAO.update(contrat);
+
+            DetailContratFragment fragment = new DetailContratFragment();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(DetailContratFragment.ARG_PARAM1, contrat);
+            fragment.setArguments(bundle);
+            getFragmentManager().beginTransaction()
+                    .addToBackStack(null)
+                    .replace(R.id.container, fragment)
+                    .commit();
+        }
     }
 
     /**
