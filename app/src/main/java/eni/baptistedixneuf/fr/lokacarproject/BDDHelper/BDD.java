@@ -201,6 +201,11 @@ public class BDD {
                 "FROM contrats", null);
     }
 
+    public Cursor getTerminatedContrats(){
+        return base.rawQuery("SELECT _id, dateDebut, dateFinPrevue, dateFinReel, rendu, client, voiture " +
+                "FROM contrats where rendu = 1", null);
+    }
+
     public Cursor getContrat(int id){
         return base.rawQuery("SELECT _id, dateDebut, dateFinPrevue, dateFinReel, rendu, client, voiture " +
                 "FROM contrats where _id = " + id, null);

@@ -3,8 +3,29 @@
     android:layout_height="match_parent"
     tools:context="eni.baptistedixneuf.fr.lokacarproject.fragment.administration.AdministrationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Chiffre D&apos;affaire"
+            android:id="@+id/tvTitleCA"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="CA"
+            android:id="@+id/tvCA"
+            android:layout_below="@+id/tvTitleCA"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
 
 </FrameLayout>

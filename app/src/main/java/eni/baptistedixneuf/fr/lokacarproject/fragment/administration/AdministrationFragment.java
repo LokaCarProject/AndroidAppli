@@ -4,11 +4,20 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
+import eni.baptistedixneuf.fr.lokacarproject.bo.Contrat;
+import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
+import eni.baptistedixneuf.fr.lokacarproject.dao.ContratDao;
+import eni.baptistedixneuf.fr.lokacarproject.dao.VoitureDao;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +36,8 @@ public class AdministrationFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private TextView tvCA;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,8 +75,28 @@ public class AdministrationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_administration, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_administration, container, false);
+        tvCA = (TextView)view.findViewById(R.id.tvCA);
+
+        List<Contrat> contrats = new ContratDao(getActivity()).getAllTerminatedContrat();
+        VoitureDao dao = new VoitureDao(getActivity());
+        double ca = 0;
+
+        for(Contrat contrat : contrats){
+            if(contrat.getFinReel() != null){
+               Voiture voiture = dao.get(contrat.getVoiture().getId());
+               long diff = contrat.getFinReel().getTime() - contrat.getDebut().getTime();
+               long jour =  TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) + 1;
+                if(jour > 0){
+                    ca += jour * voiture.getPrix();
+                }
+            }
+        }
+
+        tvCA.setText(ca + " €");
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

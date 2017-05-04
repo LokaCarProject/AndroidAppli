@@ -112,4 +112,35 @@ public class ContratDao extends Dao<Contrat>{
             e.printStackTrace();
         }
     }
+
+    public List<Contrat> getAllTerminatedContrat() {
+        BDD bdd = new BDD();
+        List<Contrat> contrats = new ArrayList<>();
+        try {
+            bdd.open(context);
+            Cursor cursor = bdd.getTerminatedContrats();
+
+            while(cursor.moveToNext()){
+                Contrat contrat = new Contrat();
+                contrat.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+                contrat.setDebut(new Date(cursor.getLong(cursor.getColumnIndex("dateDebut"))));
+                contrat.setFinPrevue(new Date(cursor.getLong(cursor.getColumnIndex("dateFinPrevue"))));
+                if(cursor.getLong(cursor.getColumnIndex("dateFinReel")) > 0){
+                    contrat.setFinReel(new Date(cursor.getLong(cursor.getColumnIndex("dateFinReel"))));
+                }
+                boolean rendu = cursor.getInt(cursor.getColumnIndex("rendu")) > 0;
+                contrat.setRendu(rendu);
+                ClientDao cDao = new ClientDao(this.context);
+                contrat.setClient(cDao.get(cursor.getInt(cursor.getColumnIndex("client"))));
+                VoitureDao vDao = new VoitureDao(this.context);
+                contrat.setVoiture(vDao.get(cursor.getInt(cursor.getColumnIndex("voiture"))));
+
+                contrats.add(contrat);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return contrats;
+    }
 }
