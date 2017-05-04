@@ -7,23 +7,35 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginActivity extends Activity {
 
-
+    private TextView motDePasse;
     private Button bouttonLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         bouttonLogin = (Button) findViewById(R.id.activity_login_button);
+        motDePasse = (TextView) findViewById(R.id.editTextMotDePasse);
+
         bouttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent detailIntent = new Intent(LoginActivity.this, MenuActivity.class);
-                startActivity(detailIntent);
+                if(motDePasse.getText().toString().equals("1234")) {
+                    Intent detailIntent = new Intent(LoginActivity.this, MenuActivity.class);
+                    startActivity(detailIntent);
+                }else{
+                    Toast.makeText(LoginActivity.this, "Mot de passe incorrect", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
+
 
     }
 

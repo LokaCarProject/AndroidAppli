@@ -6,12 +6,37 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="eni.baptistedixneuf.fr.lokacarproject.LoginActivity">
 
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Projet LokaCarProject"
+        android:id="@+id/textView"
+        android:layout_marginTop="43dp"
+        android:textSize="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:textAlignment="center" />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextMotDePasse"
+        android:layout_centerVertical="true"
+        android:hint="Mot de passe" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Me connecter"
         android:id="@+id/activity_login_button"
-        android:layout_marginTop="102dp"
+        android:layout_marginTop="53dp"
+        android:layout_below="@+id/editTextMotDePasse"
         android:layout_centerHorizontal="true" />
+
+
 
 </RelativeLayout>
