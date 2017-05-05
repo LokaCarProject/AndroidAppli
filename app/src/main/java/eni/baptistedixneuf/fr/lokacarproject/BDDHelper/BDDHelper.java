@@ -58,5 +58,10 @@ public class BDDHelper extends SQLiteOpenHelper {
                                                 "avant BOOLEAN NOT NULL, " +
                                                 "contrat INTEGER NOT NULL, " +
                                                 "FOREIGN KEY (contrat) REFERENCES contrats(_id))");
+
+        db.execSQL("INSERT INTO categories (nom) VALUES ('Eco')");
+        db.execSQL("INSERT INTO categories (nom) VALUES ('Compacte')");
+        db.execSQL("INSERT INTO categories (nom) VALUES ('Intermédiaire')");
+        db.execSQL("INSERT INTO categories (nom) VALUES ('Routière')");
     }
 }
