@@ -23,7 +23,7 @@
         android:textColor="@android:color/black"
         android:layout_marginLeft="10dp"
         android:textStyle="bold"
-        tools:text="modele"
+        tools:text="Marque"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="103dp" />

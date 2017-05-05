@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +21,10 @@ import java.io.File;
 import java.util.ArrayList;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
+import eni.baptistedixneuf.fr.lokacarproject.adaptater.categorie.CategorieAdaptater;
 import eni.baptistedixneuf.fr.lokacarproject.bo.PhotosVoiture;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
+import eni.baptistedixneuf.fr.lokacarproject.dao.CategorieDao;
 import eni.baptistedixneuf.fr.lokacarproject.dao.VoitureDao;
 
 /**
@@ -49,6 +52,7 @@ public class DetailVoitureFragment extends Fragment {
     private TextView textViewCategorie;
     private Button buttonSuppression;
     private ImageView image;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -96,6 +100,8 @@ public class DetailVoitureFragment extends Fragment {
         textViewCategorie = (TextView) v.findViewById(R.id.fragement_detail_voiture_textViewCategorie);
         image = (ImageView) v.findViewById(R.id.fragement_detail_voiture_imageView);
         buttonSuppression = (Button) v.findViewById(R.id.fragement_detail_voiture_button_suppression);
+
+
 
         textViewId.setText(""+voiture.getId());
         textViewMarque.setText(voiture.getMarque());

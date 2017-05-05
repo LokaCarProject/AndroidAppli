@@ -13,11 +13,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
@@ -28,9 +30,11 @@ import java.util.Date;
 import java.util.List;
 
 import eni.baptistedixneuf.fr.lokacarproject.R;
+import eni.baptistedixneuf.fr.lokacarproject.adaptater.categorie.CategorieAdaptater;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Categorie;
 import eni.baptistedixneuf.fr.lokacarproject.bo.PhotosVoiture;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
+import eni.baptistedixneuf.fr.lokacarproject.dao.CategorieDao;
 import eni.baptistedixneuf.fr.lokacarproject.dao.PhotosVoitureDao;
 import eni.baptistedixneuf.fr.lokacarproject.dao.VoitureDao;
 
@@ -48,7 +52,7 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
 
@@ -59,7 +63,8 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
     private EditText couleur;
     private EditText immatriculation;
     private EditText prix;
-    private RadioButton cat1;
+    private Spinner spinner;
+    private Categorie entry;
 
     private Button boutonEnregistrer;
     private Button boutonPrendreUnePhoto;
@@ -116,6 +121,10 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
         voiture = new Voiture();
         photos = new ArrayList<>();
 
+        CategorieDao catDao = new CategorieDao(getActivity());
+        List<Categorie> categories = catDao.getAll();
+
+
         boutonEnregistrer = (Button)view.findViewById(R.id.saveVoiture);
         boutonEnregistrer.setOnClickListener(this);
 
@@ -130,14 +139,31 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
         immatriculation = (EditText)view.findViewById(R.id.editImat);
         prix = (EditText)view.findViewById(R.id.editPrix);
         couleur = (EditText)view.findViewById(R.id.editCouleur);
-        cat1 = (RadioButton)view.findViewById(R.id.cat1);
+        spinner = (Spinner)view.findViewById(R.id.spiCate);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                entry = (Categorie)parent.getAdapter().getItem(position);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        CategorieAdaptater catAdapt = new CategorieAdaptater(getActivity(),catDao.getAll());
+        catAdapt.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(catAdapt);
 
 
 
         // Inflate the layout for this fragment
         return view;
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -191,19 +217,8 @@ public class AjoutVoitureFragment extends Fragment  implements View.OnClickListe
             voiture.setImmatriculation(immatriculation.getText().toString());
             voiture.setPrix(Double.parseDouble(prix.getText().toString()));
 
-            Categorie cat = new Categorie();
-            String categorie;
-
-            if(cat1.isChecked())
-            {
-                categorie = "categorie1";
-            }
-            else
-            {
-                categorie = "categorie2";
-            }
-            voiture.setCategorie(cat);
-
+            voiture.setCategorie(entry);
+            
             VoitureDao voitureDao = new VoitureDao(getActivity());
             voitureDao.add(voiture);
             voiture.setId(voitureDao.getInsertId());
