@@ -114,4 +114,34 @@ public class VoitureDao extends Dao<Voiture>{
         return super.getInsertId("voitures");
     }
 
+    public List<Voiture> getAllByCategorie(int idCat){
+        BDD bdd = new BDD();
+        List<Voiture> voitures = new ArrayList<>();
+        try {
+            bdd.open(context);
+            Cursor cursor = bdd.getVoituresByCategorie(idCat);
+
+            while(cursor.moveToNext()){
+                Voiture voiture = new Voiture();
+                voiture.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+                voiture.setModele(cursor.getString(cursor.getColumnIndex("modele")));
+                voiture.setCouleur(cursor.getString(cursor.getColumnIndex("couleur")));
+                voiture.setMarque(cursor.getString(cursor.getColumnIndex("marque")));
+                voiture.setImmatriculation(cursor.getString(cursor.getColumnIndex("immatriculation")));
+                voiture.setPrix(cursor.getDouble(cursor.getColumnIndex("prix")));
+
+                CategorieDao dao = new CategorieDao(this.context);
+                voiture.setCategorie(dao.get(cursor.getColumnIndex("categorie")));
+
+                PhotosVoitureDao photosVoitureDao = new PhotosVoitureDao(this.context);
+                List<PhotosVoiture> photos =  photosVoitureDao.getByIdVoiture(voiture.getId());
+                voiture.setPhotos(photos);
+                voitures.add(voiture);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return voitures;
+    }
 }

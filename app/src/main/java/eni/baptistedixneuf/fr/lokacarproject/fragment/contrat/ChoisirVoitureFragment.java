@@ -8,16 +8,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import eni.baptistedixneuf.fr.lokacarproject.R;
+import eni.baptistedixneuf.fr.lokacarproject.adaptater.categorie.CategorieAdaptater;
 import eni.baptistedixneuf.fr.lokacarproject.adaptater.voiture.VoitureAdaptater;
+import eni.baptistedixneuf.fr.lokacarproject.bo.Categorie;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Client;
 import eni.baptistedixneuf.fr.lokacarproject.bo.Voiture;
+import eni.baptistedixneuf.fr.lokacarproject.dao.CategorieDao;
 import eni.baptistedixneuf.fr.lokacarproject.dao.VoitureDao;
 import eni.baptistedixneuf.fr.lokacarproject.fragment.contrat.dummy.DummyContent;
 
@@ -36,7 +44,10 @@ public class ChoisirVoitureFragment extends Fragment implements AbsListView.OnIt
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String ALL_CAT = "Toutes";
+
     private ListView listeVoitures;
+    private Spinner spinner;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -113,6 +124,40 @@ public class ChoisirVoitureFragment extends Fragment implements AbsListView.OnIt
                         .addToBackStack(null)
                         .replace(R.id.container, fragment)
                         .commit();
+            }
+        });
+
+        spinner = (Spinner) view.findViewById(R.id.spinnerCategorie);
+        CategorieDao cDao = new CategorieDao(getActivity());
+        List<Categorie> categories = cDao.getAll();
+        Categorie cat = new Categorie();
+        cat.setId(0);
+        cat.setNom(ALL_CAT);
+        categories.add(0, cat);
+        CategorieAdaptater cAdaptater = new CategorieAdaptater(getActivity(), categories);
+        cAdaptater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(cAdaptater);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Categorie entry = (Categorie) parent.getAdapter().getItem(position);
+                VoitureDao dao = new VoitureDao(getActivity());
+                List<Voiture> voitures = new ArrayList<>();
+                if(entry.getNom().equals(ALL_CAT)){
+                   voitures = dao.getAll();
+                } else {
+                    voitures = dao.getAllByCategorie(entry.getId());
+                }
+
+                VoitureAdaptater adapter = new VoitureAdaptater(getActivity(), voitures);
+                ChoisirVoitureFragment.this.listeVoitures.setAdapter(adapter);
+                ChoisirVoitureFragment.this.listeVoitures.deferNotifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 

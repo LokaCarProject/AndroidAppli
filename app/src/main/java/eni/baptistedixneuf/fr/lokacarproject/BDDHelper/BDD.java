@@ -76,6 +76,11 @@ public class BDD {
                                 "FROM voitures", null);
     }
 
+    public Cursor getVoituresByCategorie(int idCat){
+        return base.rawQuery("SELECT _id, modele, couleur, marque, immatriculation, prix, categorie " +
+                "FROM voitures where categorie = " + idCat, null);
+    }
+
     public Cursor getVoiture(int id){
         return base.rawQuery("SELECT _id, modele, couleur, marque, immatriculation, prix, categorie " +
                 "FROM voitures where _id = " + id, null);
